@@ -20,10 +20,8 @@ namespace SpellWork
         private DataTable spellData { get; set; }
         private DataTable tempTable { get; set; }
 
-
         private void Form1_Load(object sender, EventArgs e)
         {
-           // var item = (object[])Enum.GetValues(typeof(ProcFlags));
             foreach (var elem in Enum.GetValues(typeof(ProcFlags)))
             {
                 _clbProcFlaf.Items.Add(elem.ToString().Substring(10));
@@ -34,12 +32,7 @@ namespace SpellWork
             SetEnumValues(_cbTarget1, typeof(Targets), true);
             SetEnumValues(_cbTarget2, typeof(Targets), true);
         }
-        /// <summary>
-        /// Заполняет контрол, значениями из энумераторов
-        /// </summary>
-        /// <param name="cb">Контрол, который нужно заполнить</param>
-        /// <param name="enums">Перечисление</param>
-        /// <param name="first">Указывает, должен ли стоять в начале списка</param>
+
         private void SetEnumValues(ComboBox cb, Type enums, bool first)
         {
             DataTable dt = new DataTable();
@@ -60,6 +53,7 @@ namespace SpellWork
 
         private void _bSearch_Click(object sender, EventArgs e)
         {
+            //todo: inplement spell info in Spell Class
             Spell spell = new Spell();
             spellData = spell.SpellData;
         }
@@ -68,27 +62,20 @@ namespace SpellWork
         {
             try
             {
+                //todo: inplement filter system
                 var filter1 = _cbSpellFamilyNames.SelectedValue.ToString();
-                var filter2 = _cbSpellFamilyNames.SelectedValue.ToString();
-                var filter3 = _cbSpellFamilyNames.SelectedValue.ToString();
-                var filter4 = _cbSpellFamilyNames.SelectedValue.ToString();
-                _rtSpellInfo.Text = filter1.ToString();
-                DataView(filter1.ToString());
+                _rtSpellInfo.Text = filter1;
+                DataView(filter1);
             }
             catch { }
         }
-        /*
-         * IEnumerable<DataRow> query =
-                                from order in orders.AsEnumerable()
-                                where order.Field<DateTime>("OrderDate") > new DateTime(2001, 8, 1)
-                                select order;
-         */
+
         private void DataView(string filter)
         {
-
-            IEnumerable<DataRow> query = from spell in spellData.AsEnumerable()
-                        where spell.Field<string>("SpellFamilyName") == filter
-                        select spell;
+            IEnumerable<DataRow> query = 
+                from spell in spellData.AsEnumerable()
+                where spell.Field<string>("SpellFamilyName") == filter
+                select spell;
             
             tempTable = query.CopyToDataTable<DataRow>();
             
@@ -101,12 +88,6 @@ namespace SpellWork
             }
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            splitContainer1.Panel2Collapsed = !splitContainer1.Panel2Collapsed;
-            //var find = Spell.SpellData.Select("");
-        }
-
         private void _lvSpellList_SelectedIndexChanged(object sender, EventArgs e)
         {
             _rtSpellInfo.Clear();
@@ -117,7 +98,7 @@ namespace SpellWork
                 IEnumerable<DataRow> query = from spell in tempTable.AsEnumerable()
                                              where spell.Field<string>("ID") == index
                                              select spell;
-                DataRow[] dtr = query.CopyToDataTable < DataRow >().Select();
+                DataRow[] dtr = query.CopyToDataTable<DataRow>().Select();
 
                 foreach (var spellInfo in dtr)
                 {
@@ -146,10 +127,6 @@ namespace SpellWork
                     _rtSpellInfo.AppendText("\r\n"+sig + ": " + inf);
                 }
             }
-            //_rtSpellInfo.SelectionColor = Color.Aqua;
-            //_rtSpellInfo.AppendText("SpellID: " + spellInfo["ID"]);
-            //_rtSpellInfo.SelectionColor = Color.Blue;
-            //_rtSpellInfo.AppendText("Spell Name: " + spellInfo["SpellName_1"]);
         }
 
         private void _bProc_Click(object sender, EventArgs e)
@@ -179,6 +156,11 @@ namespace SpellWork
         private void _bProcFlag_Click(object sender, EventArgs e)
         {
             splitContainer6.Panel2Collapsed = !splitContainer6.Panel2Collapsed;
+        }
+
+        private void _cbSpellAura_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

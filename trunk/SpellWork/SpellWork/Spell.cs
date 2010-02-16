@@ -14,31 +14,16 @@ namespace SpellWork
     {
         public Spell()
         {
-            var path = @"d:\\spellwork\\WoW_enUS\\dbc\\";
+            //todo: selected folder in settings
+            var path = @"dbc\";
 
             new DBCReader(path + "Spell.dbc",            ref SpellData,        SpellStructure);
-            new DBCReader(path + "SpellCastTimes.dbc",    ref SpellCastTime,    SpellCastTimeStructure);
+            new DBCReader(path + "SpellCastTimes.dbc",   ref SpellCastTime,    SpellCastTimeStructure);
             new DBCReader(path + "SpellRadius.dbc",      ref SpellRadius,      SpellRadiusStructure);
             new DBCReader(path + "SpellDuration.dbc",    ref SpellDuration,    DurationStructure);
             new DBCReader(path + "SpellRange.dbc",       ref SpellRange,       SpellRangeStructure);
             new DBCReader(path + "SkillLineAbility.dbc", ref SkillLineAbility, SkillLineAbilityStructure);
-
-           /* 
-           var query = from person in people
-                     join pet in pets on person equals pet.Owner into gj
-                     from subpet in gj.DefaultIfEmpty()
-                     select new { person.FirstName, PetName = (subpet == null ? String.Empty : subpet.Name) };
-            */
-
-            //IEnumerable<DataRow> allTable =
-            //    from spellData in SpellData.AsEnumerable()
-            //    join spellCastTime in SpellCastTime.AsEnumerable() on spellData["CastingTimeIndex"] equals spellCastTime["ID"]
-            //    // join spellRadius in SpellRadius.AsEnumerable() on spellData[""] equals spellRadius["ID"]
-            //    join spellDuration in SpellDuration.AsEnumerable() on spellData["DurationIndex"] equals spellDuration["ID"]
-            //    join spellRange in SpellRange.AsEnumerable() on spellData["RangeIndex"] equals spellRange["ID"]
-            //    // join skillLineAbility in SkillLineAbility.AsEnumerable() on spellData[""] equals skillLineAbility["ID"]
-            //    select spellData;//new { spellData, spellCastTime, spellDuration, spellRange }; 
-        }
+       }
 
         #region SpellDataTable
         /// <summary>

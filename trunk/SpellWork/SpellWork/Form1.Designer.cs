@@ -31,7 +31,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this._status = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -53,6 +52,9 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
+            this._bProcFlag = new System.Windows.Forms.Button();
+            this._clbProcFlaf = new System.Windows.Forms.CheckedListBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this._tvFamilyMask = new System.Windows.Forms.TreeView();
@@ -72,11 +74,7 @@
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this._bProc = new System.Windows.Forms.Button();
             this._bSpellInfo = new System.Windows.Forms.Button();
-            this._clbProcFlaf = new System.Windows.Forms.CheckedListBox();
-            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
-            this._bProcFlag = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -91,6 +89,9 @@
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.splitContainer6.Panel1.SuspendLayout();
+            this.splitContainer6.Panel2.SuspendLayout();
+            this.splitContainer6.SuspendLayout();
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
@@ -99,9 +100,6 @@
             this.splitContainer5.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.splitContainer6.Panel1.SuspendLayout();
-            this.splitContainer6.Panel2.SuspendLayout();
-            this.splitContainer6.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -121,21 +119,12 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(856, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(113, 20);
-            this.toolStripMenuItem1.Text = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // tabControl1
             // 
@@ -283,6 +272,7 @@
             this._cbSpellAura.Name = "_cbSpellAura";
             this._cbSpellAura.Size = new System.Drawing.Size(265, 21);
             this._cbSpellAura.TabIndex = 3;
+            this._cbSpellAura.SelectedIndexChanged += new System.EventHandler(this._cbSpellAura_SelectedIndexChanged);
             // 
             // _cbSpellFamilyNames
             // 
@@ -366,6 +356,46 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(848, 94);
             this.panel1.TabIndex = 0;
+            // 
+            // splitContainer6
+            // 
+            this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer6.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer6.Name = "splitContainer6";
+            this.splitContainer6.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer6.Panel1
+            // 
+            this.splitContainer6.Panel1.Controls.Add(this._bProcFlag);
+            // 
+            // splitContainer6.Panel2
+            // 
+            this.splitContainer6.Panel2.Controls.Add(this._clbProcFlaf);
+            this.splitContainer6.Size = new System.Drawing.Size(848, 94);
+            this.splitContainer6.SplitterDistance = 45;
+            this.splitContainer6.TabIndex = 0;
+            // 
+            // _bProcFlag
+            // 
+            this._bProcFlag.Location = new System.Drawing.Point(816, 3);
+            this._bProcFlag.Name = "_bProcFlag";
+            this._bProcFlag.Size = new System.Drawing.Size(29, 23);
+            this._bProcFlag.TabIndex = 0;
+            this._bProcFlag.Text = "button2";
+            this._bProcFlag.UseVisualStyleBackColor = true;
+            this._bProcFlag.Click += new System.EventHandler(this._bProcFlag_Click);
+            // 
+            // _clbProcFlaf
+            // 
+            this._clbProcFlaf.ColumnWidth = 250;
+            this._clbProcFlaf.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._clbProcFlaf.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this._clbProcFlaf.FormattingEnabled = true;
+            this._clbProcFlaf.Location = new System.Drawing.Point(0, 0);
+            this._clbProcFlaf.MultiColumn = true;
+            this._clbProcFlaf.Name = "_clbProcFlaf";
+            this._clbProcFlaf.Size = new System.Drawing.Size(848, 34);
+            this._clbProcFlaf.TabIndex = 0;
             // 
             // splitContainer4
             // 
@@ -580,46 +610,6 @@
             this._bSpellInfo.Visible = false;
             this._bSpellInfo.Click += new System.EventHandler(this._bSpellInfo_Click);
             // 
-            // _clbProcFlaf
-            // 
-            this._clbProcFlaf.ColumnWidth = 250;
-            this._clbProcFlaf.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._clbProcFlaf.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this._clbProcFlaf.FormattingEnabled = true;
-            this._clbProcFlaf.Location = new System.Drawing.Point(0, 0);
-            this._clbProcFlaf.MultiColumn = true;
-            this._clbProcFlaf.Name = "_clbProcFlaf";
-            this._clbProcFlaf.Size = new System.Drawing.Size(848, 34);
-            this._clbProcFlaf.TabIndex = 0;
-            // 
-            // splitContainer6
-            // 
-            this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer6.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer6.Name = "splitContainer6";
-            this.splitContainer6.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer6.Panel1
-            // 
-            this.splitContainer6.Panel1.Controls.Add(this._bProcFlag);
-            // 
-            // splitContainer6.Panel2
-            // 
-            this.splitContainer6.Panel2.Controls.Add(this._clbProcFlaf);
-            this.splitContainer6.Size = new System.Drawing.Size(848, 94);
-            this.splitContainer6.SplitterDistance = 46;
-            this.splitContainer6.TabIndex = 0;
-            // 
-            // _bProcFlag
-            // 
-            this._bProcFlag.Location = new System.Drawing.Point(816, 3);
-            this._bProcFlag.Name = "_bProcFlag";
-            this._bProcFlag.Size = new System.Drawing.Size(29, 23);
-            this._bProcFlag.TabIndex = 0;
-            this._bProcFlag.Text = "button2";
-            this._bProcFlag.UseVisualStyleBackColor = true;
-            this._bProcFlag.Click += new System.EventHandler(this._bProcFlag_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -636,8 +626,6 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -653,6 +641,9 @@
             this.splitContainer3.Panel2.ResumeLayout(false);
             this.splitContainer3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.splitContainer6.Panel1.ResumeLayout(false);
+            this.splitContainer6.Panel2.ResumeLayout(false);
+            this.splitContainer6.ResumeLayout(false);
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel2.ResumeLayout(false);
             this.splitContainer4.ResumeLayout(false);
@@ -662,9 +653,6 @@
             this.splitContainer5.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            this.splitContainer6.Panel1.ResumeLayout(false);
-            this.splitContainer6.Panel2.ResumeLayout(false);
-            this.splitContainer6.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -694,7 +682,6 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ColumnHeader chSpellFamily;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.SplitContainer splitContainer3;
