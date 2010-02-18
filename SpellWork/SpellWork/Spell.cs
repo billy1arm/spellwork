@@ -15,14 +15,21 @@ namespace SpellWork
         public Spell()
         {
             //todo: selected folder in settings
-            var path = @"dbc\";
+            try
+            {
+                var path = @"dbc\";
 
-            new DBCReader(path + "Spell.dbc",            ref SpellData,        SpellStructure);
-            new DBCReader(path + "SpellCastTimes.dbc",   ref SpellCastTime,    SpellCastTimeStructure);
-            new DBCReader(path + "SpellRadius.dbc",      ref SpellRadius,      SpellRadiusStructure);
-            new DBCReader(path + "SpellDuration.dbc",    ref SpellDuration,    DurationStructure);
-            new DBCReader(path + "SpellRange.dbc",       ref SpellRange,       SpellRangeStructure);
-            new DBCReader(path + "SkillLineAbility.dbc", ref SkillLineAbility, SkillLineAbilityStructure);
+                new DBCReader(path + "Spell.dbc",            ref SpellData,        SpellStructure);
+                new DBCReader(path + "SpellCastTimes.dbc",   ref SpellCastTime,    SpellCastTimeStructure);
+                new DBCReader(path + "SpellRadius.dbc",      ref SpellRadius,      SpellRadiusStructure);
+                new DBCReader(path + "SpellDuration.dbc",    ref SpellDuration,    DurationStructure);
+                new DBCReader(path + "SpellRange.dbc",       ref SpellRange,       SpellRangeStructure);
+                new DBCReader(path + "SkillLineAbility.dbc", ref SkillLineAbility, SkillLineAbilityStructure);
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("not files in \"..\\dbc\" folder");
+            }
        }
 
         #region SpellDataTable
@@ -50,22 +57,6 @@ namespace SpellWork
         /// 
         /// </summary>
         public DataTable SkillLineAbility     = new DataTable();
-
-        #endregion
-
-        #region DBC Files
-        /// <summary>
-        /// Файлы, которые содержат полезные данные
-        /// </summary>
-        readonly String[] DBCFilles = new String[]
-        {
-            "Spell.dbc",
-            "SpellCastTime.dbc",
-            "SpellRadius.dbc",
-            "SpellDuration.dbc",
-            "SpellRangeStructure.dbc",
-            "SkillLineAbility.dbc"
-        };
 
         #endregion
 
