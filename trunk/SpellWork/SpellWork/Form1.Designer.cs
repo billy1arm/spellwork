@@ -71,6 +71,7 @@
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this._bProc = new System.Windows.Forms.Button();
             this._bSpellInfo = new System.Windows.Forms.Button();
+            this.ItemTemplate = new Microsoft.VisualBasic.PowerPacks.DataRepeaterItem();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -172,6 +173,7 @@
             // 
             this._rtSpellInfo.BackColor = System.Drawing.Color.Gainsboro;
             this._rtSpellInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._rtSpellInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this._rtSpellInfo.Location = new System.Drawing.Point(0, 0);
             this._rtSpellInfo.Name = "_rtSpellInfo";
             this._rtSpellInfo.Size = new System.Drawing.Size(564, 378);
@@ -219,7 +221,7 @@
             // 
             // chSpellName
             // 
-            this.chSpellName.Text = "Название";
+            this.chSpellName.Text = "Name";
             this.chSpellName.Width = 200;
             // 
             // _cbTarget1
@@ -264,7 +266,7 @@
             this._bSearch.Name = "_bSearch";
             this._bSearch.Size = new System.Drawing.Size(47, 23);
             this._bSearch.TabIndex = 1;
-            this._bSearch.Text = "Поиск";
+            this._bSearch.Text = "Seach";
             this._bSearch.UseVisualStyleBackColor = true;
             this._bSearch.Click += new System.EventHandler(this._bSearch_Click);
             // 
@@ -552,9 +554,6 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox2.Location = new System.Drawing.Point(3, 43);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(844, 345);
@@ -584,6 +583,10 @@
             this._bSpellInfo.UseVisualStyleBackColor = true;
             this._bSpellInfo.Visible = false;
             this._bSpellInfo.Click += new System.EventHandler(this._bSpellInfo_Click);
+            // 
+            // ItemTemplate
+            // 
+            this.ItemTemplate.Size = new System.Drawing.Size(158, 239);
             // 
             // Form1
             // 
@@ -678,6 +681,7 @@
         private System.Windows.Forms.CheckedListBox _clbProcFlaf;
         private System.Windows.Forms.SplitContainer splitContainer6;
         private System.Windows.Forms.Button _bProcFlag;
+        private Microsoft.VisualBasic.PowerPacks.DataRepeaterItem ItemTemplate;
     }
 }
 

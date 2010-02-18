@@ -28,7 +28,7 @@ namespace SpellWork
             }
             catch
             {
-                System.Windows.Forms.MessageBox.Show("not files in \"..\\dbc\" folder");
+                System.Windows.Forms.MessageBox.Show("not files in \"\\dbc\" folder");
             }
        }
 

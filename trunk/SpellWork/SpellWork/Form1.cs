@@ -58,8 +58,6 @@ namespace SpellWork
         private void _bSearch_Click(object sender, EventArgs e)
         {
             //todo: inplement spell info in Spell Class
-            Spell spell = new Spell();
-            spellData = spell.SpellData;
         }
 
         private void _cbSpellFamilyNames_SelectedIndexChanged(object sender, EventArgs e)
@@ -112,7 +110,8 @@ namespace SpellWork
 
             foreach (DataRow item in tempTable.Select())
             {
-                _lvSpellList.Items.Add(new ListViewItem(new String[] { "" + item["ID"], "" + item["SpellName_1"]}));
+                _lvSpellList.Items.Add(new ListViewItem(new String[] 
+                { "" + item["ID"], "" + item["SpellName_1"]+"("+item["Rank_1"]+")" }));
             }
         }
 
@@ -130,10 +129,6 @@ namespace SpellWork
                 foreach (var spellInfo in dtr)
                 {
                     SpellViewInfo(spellInfo);
-                    //_rtSpellInfo.SelectionColor = Color.Aqua;
-                    //_rtSpellInfo.AppendText("SpellID: "+spellInfo["ID"]);
-                    //_rtSpellInfo.SelectionColor = Color.Blue;
-                    //_rtSpellInfo.AppendText("Spell Name: " + spellInfo["SpellName_1"]);
                 }
             }
         }
@@ -141,15 +136,28 @@ namespace SpellWork
 
         void SpellViewInfo(DataRow spellInfo)
         {
-            foreach (var str in Spell.SpellStructure)
-            {
-                string sig = str[1];
-                string inf = spellInfo[sig].ToString();
-                if (inf != "0" && inf != "")
-                {
-                    _rtSpellInfo.AppendText("\r\n"+sig + ": " + inf);
-                }
-            }
+            _rtSpellInfo.SelectionColor = Color.Blue;
+            
+            _rtSpellInfo.AppendText(String.Format("ID - {0} {1}({2})", spellInfo["ID"], spellInfo["SpellName_1"], spellInfo["Rank_1"]));
+            _rtSpellInfo.AppendText("\r\n------------------------------------------");
+            _rtSpellInfo.AppendText("\r\nDescription: " + spellInfo["Description_1"]);
+            _rtSpellInfo.AppendText("\r\nToolTip: "     + spellInfo["ToolTip_1"]);
+            _rtSpellInfo.AppendText("\r\n------------------------------------------");
+            _rtSpellInfo.AppendText(String.Format("\r\nCategory = {0}, SpellIconID = {1}, ActiveIconID = {2}, SpellVisual_1 = {3}, SpellVisual_2 = {4}",
+                spellInfo["Category"], spellInfo["SpellIconID"], spellInfo["ActiveIconID"], spellInfo["SpellVisual_1"], spellInfo["SpellVisual_2"]));
+
+            _rtSpellInfo.AppendText(String.Format("\r\nSchool = {0}, DamageClass = {1}, PreventionType = {2}",
+                spellInfo["SchoolMask"], spellInfo["DmgClass"], spellInfo["PreventionType"]));
+
+            _rtSpellInfo.AppendText("\r\nSpellLevel = " + spellInfo["SpellLevel"]);
+
+            _rtSpellInfo.AppendText(String.Format("\r\nAttributes 0x{0:X8}, Ex 0x{1:X8}, Ex2 0x{2:X8}, Ex3 0x{3:X8}, Ex4 0x{4:X8}, Ex5 0x{5:X8}, Ex6 0x{6:X8}, ExG 0x{7:X8}",
+                uint.Parse(""+spellInfo["Attributes"]), uint.Parse(""+spellInfo["AttributesEx"]), uint.Parse(""+spellInfo["AttributesEx2"]), uint.Parse(""+spellInfo["AttributesEx3"]), 
+                uint.Parse(""+spellInfo["AttributesEx4"]), uint.Parse(""+spellInfo["AttributesEx5"]), uint.Parse(""+spellInfo["AttributesEx6"]), uint.Parse(""+spellInfo["AttributesExG"])));
+
+            _rtSpellInfo.AppendText(String.Format("\r\nDuration = (todo)xxx, xxx, xxx"));
+
+            //todo: more info
         }
 
         private void _bProc_Click(object sender, EventArgs e)
