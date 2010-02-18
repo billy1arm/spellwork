@@ -22,15 +22,19 @@ namespace SpellWork
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // read dbc to DataTable
+            Spell spell = new Spell();
+            spellData = spell.SpellData;
+
             foreach (var elem in Enum.GetValues(typeof(ProcFlags)))
             {
+                // tested
                 _clbProcFlaf.Items.Add(elem.ToString().Substring(10));
             }
             SetEnumValues(_cbSpellFamilyNames, typeof(SpellFamilyNames), true);
-            SetEnumValues(_cbSpellAura, typeof(AuraType), false);
-            SetEnumValues(_cbSpellEffect, typeof(SpellEffects), false);
-            SetEnumValues(_cbTarget1, typeof(Targets), true);
-            SetEnumValues(_cbTarget2, typeof(Targets), true);
+            SetEnumValues(_cbSpellAura,        typeof(AuraType),        false);
+            SetEnumValues(_cbSpellEffect,      typeof(SpellEffects),    false);
+            SetEnumValues(_cbTarget1,          typeof(Targets),          true);
         }
 
         private void SetEnumValues(ComboBox cb, Type enums, bool first)
@@ -39,7 +43,7 @@ namespace SpellWork
             dt.Columns.Add("ID");
             dt.Columns.Add("NAME");
             if (first)
-                dt.Rows.Add(new Object[] {-1, "Не использовать фильтр"});
+                dt.Rows.Add(new Object[] {-1, "No filter"});
             
             foreach (var str in Enum.GetValues(enums))
             {
@@ -60,31 +64,55 @@ namespace SpellWork
 
         private void _cbSpellFamilyNames_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            if(((ComboBox)sender).SelectedIndex != 0)
             {
-                //todo: inplement filter system
-                var filter1 = _cbSpellFamilyNames.SelectedValue.ToString();
-                _rtSpellInfo.Text = filter1;
-                DataView(filter1);
+                // todo: more ex
+                DataView("");
             }
-            catch { }
         }
 
-        private void DataView(string filter)
+        private void DataView(string index)
         {
+            _lvSpellList.Items.Clear();
+
+            var bFamilyNames = _cbSpellFamilyNames.SelectedIndex == 0 ? false : true;
+            var fFamilyNames = _cbSpellFamilyNames.SelectedValue.ToString();
+
+            var bSpellAura = _cbSpellAura.SelectedIndex == 0 ? false : true;
+            var fSpellAura = _cbSpellAura.SelectedValue.ToString();
+
+            var bSpellEffect = _cbSpellEffect.SelectedIndex == 0 ? false : true;
+            var fSpellEffect = _cbSpellEffect.SelectedValue.ToString();
+
+            var bTarget1 = _cbTarget1.SelectedIndex == 0 ? false : true;
+            var fTarget1 = _cbTarget1.SelectedValue.ToString();
+            
             IEnumerable<DataRow> query = 
                 from spell in spellData.AsEnumerable()
-                where spell.Field<string>("SpellFamilyName") == filter
+                // filter
+                where (!bFamilyNames || spell.Field<string>("SpellFamilyName") == fFamilyNames)
+                   // if SpellAura selected
+                   && (!bSpellAura   || spell.Field<string>("EffectApplyAuraName_1") == fSpellAura
+                                     || spell.Field<string>("EffectApplyAuraName_2") == fSpellAura
+                                     || spell.Field<string>("EffectApplyAuraName_3") == fSpellAura)
+                    // if SpellEffect selected
+                   && (!bSpellEffect || spell.Field<string>("Effect_1") == fSpellEffect
+                                     || spell.Field<string>("Effect_2") == fSpellEffect
+                                     || spell.Field<string>("Effect_3") == fSpellEffect)
+
+                   && (!bTarget1     || spell.Field<string>("Targets") == fTarget1)
+                
                 select spell;
             
+            if (query.Count() == 0) return;
+
             tempTable = query.CopyToDataTable<DataRow>();
             
             _lvSpellList.Items.Clear();
 
-
             foreach (DataRow item in tempTable.Select())
             {
-                _lvSpellList.Items.Add(new ListViewItem(new String[] { "" + item["ID"], "" + item["SpellName_1"], "" + item["SpellFamilyName"] }));
+                _lvSpellList.Items.Add(new ListViewItem(new String[] { "" + item["ID"], "" + item["SpellName_1"]}));
             }
         }
 
@@ -93,10 +121,9 @@ namespace SpellWork
             _rtSpellInfo.Clear();
             if (_lvSpellList.SelectedItems.Count > 0)
             {
-
-                var index = _lvSpellList.SelectedItems[0].SubItems[0].Text;
+                var entry = _lvSpellList.SelectedItems[0].SubItems[0].Text;
                 IEnumerable<DataRow> query = from spell in tempTable.AsEnumerable()
-                                             where spell.Field<string>("ID") == index
+                                             where spell.Field<string>("ID") == entry
                                              select spell;
                 DataRow[] dtr = query.CopyToDataTable<DataRow>().Select();
 
@@ -111,10 +138,6 @@ namespace SpellWork
             }
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
 
         void SpellViewInfo(DataRow spellInfo)
         {
@@ -156,11 +179,6 @@ namespace SpellWork
         private void _bProcFlag_Click(object sender, EventArgs e)
         {
             splitContainer6.Panel2Collapsed = !splitContainer6.Panel2Collapsed;
-        }
-
-        private void _cbSpellAura_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
     }
