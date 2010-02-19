@@ -1,5 +1,10 @@
 ﻿namespace SpellWork
 {
+    public enum LocalesDBC
+    {
+        enUS,
+        ruRU  
+    };
     /// <summary>
     /// 
     /// </summary>

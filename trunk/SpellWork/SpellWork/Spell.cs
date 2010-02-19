@@ -25,12 +25,26 @@ namespace SpellWork
                 new DBCReader(path + "SpellDuration.dbc",    ref SpellDuration,    DurationStructure);
                 new DBCReader(path + "SpellRange.dbc",       ref SpellRange,       SpellRangeStructure);
                 new DBCReader(path + "SkillLineAbility.dbc", ref SkillLineAbility, SkillLineAbilityStructure);
+
+                GetLocale();
             }
             catch
             {
                 System.Windows.Forms.MessageBox.Show("not files in \"\\dbc\" folder");
             }
        }
+        
+        void GetLocale()
+        {
+            var locale = SpellData.Select().First()["SpellName_ruRU"].ToString();
+            if (locale != "")
+                Locales = LocalesDBC.ruRU;
+            else
+                Locales = LocalesDBC.enUS;
+
+        }
+
+        public LocalesDBC Locales { get; private set; }
 
         #region SpellDataTable
         /// <summary>
@@ -209,6 +223,7 @@ namespace SpellWork
 	        new String[] {"uint",    "SpellIconID"},
 	        new String[] {"uint",    "ActiveIconID"},
 	        new String[] {"uint",    "SpellPriority"},
+            new String[] {"string",  "SpellName_enUS"},
 	        new String[] {"string",  "SpellName_1"},
 	        new String[] {"string",  "SpellName_2"},
 	        new String[] {"string",  "SpellName_3"},
@@ -216,7 +231,7 @@ namespace SpellWork
 	        new String[] {"string",  "SpellName_5"},
 	        new String[] {"string",  "SpellName_6"},
 	        new String[] {"string",  "SpellName_7"},
-	        new String[] {"string",  "SpellName_8"},
+	        new String[] {"string",  "SpellName_ruRU"},
 	        new String[] {"string",  "SpellName_9"},
 	        new String[] {"string",  "SpellName_10"},
 	        new String[] {"string",  "SpellName_11"},
@@ -224,8 +239,8 @@ namespace SpellWork
 	        new String[] {"string",  "SpellName_13"},
 	        new String[] {"string",  "SpellName_14"},
 	        new String[] {"string",  "SpellName_15"},
-	        new String[] {"string",  "SpellName_16"},
 	        new String[] {"uint",    "SpellNameFlags"},
+            new String[] {"string",  "Rank_enUS"},
 	        new String[] {"string",  "Rank_1"},
 	        new String[] {"string",  "Rank_2"},
 	        new String[] {"string",  "Rank_3"},
@@ -233,7 +248,7 @@ namespace SpellWork
 	        new String[] {"string",  "Rank_5"},
 	        new String[] {"string",  "Rank_6"},
 	        new String[] {"string",  "Rank_7"},
-	        new String[] {"string",  "Rank_8"},
+	        new String[] {"string",  "Rank_ruRU"},
 	        new String[] {"string",  "Rank_9"},
 	        new String[] {"string",  "Rank_10"},
 	        new String[] {"string",  "Rank_11"},
@@ -241,8 +256,8 @@ namespace SpellWork
 	        new String[] {"string",  "Rank_13"},
 	        new String[] {"string",  "Rank_14"},
 	        new String[] {"string",  "Rank_15"},
-	        new String[] {"string",  "Rank_16"},
 	        new String[] {"uint",    "RankFlags"},
+            new String[] {"string",  "Description_enUS"},
 	        new String[] {"string",  "Description_1"},
 	        new String[] {"string",  "Description_2"},
 	        new String[] {"string",  "Description_3"},
@@ -250,7 +265,7 @@ namespace SpellWork
 	        new String[] {"string",  "Description_5"},
 	        new String[] {"string",  "Description_6"},
 	        new String[] {"string",  "Description_7"},
-	        new String[] {"string",  "Description_8"},
+	        new String[] {"string",  "Description_ruRU"},
 	        new String[] {"string",  "Description_9"},
 	        new String[] {"string",  "Description_10"},
 	        new String[] {"string",  "Description_11"},
@@ -258,8 +273,8 @@ namespace SpellWork
 	        new String[] {"string",  "Description_13"},
 	        new String[] {"string",  "Description_14"},
 	        new String[] {"string",  "Description_15"},
-	        new String[] {"string",  "Description_16"},
 	        new String[] {"uint",    "DescriptionFlags"},
+            new String[] {"string",  "ToolTip_enUS"},
 	        new String[] {"string",  "ToolTip_1"},
 	        new String[] {"string",  "ToolTip_2"},
 	        new String[] {"string",  "ToolTip_3"},
@@ -267,7 +282,7 @@ namespace SpellWork
 	        new String[] {"string",  "ToolTip_5"},
 	        new String[] {"string",  "ToolTip_6"},
 	        new String[] {"string",  "ToolTip_7"},
-	        new String[] {"string",  "ToolTip_8"},
+	        new String[] {"string",  "ToolTip_ruRU"},
 	        new String[] {"string",  "ToolTip_9"},
 	        new String[] {"string",  "ToolTip_10"},
 	        new String[] {"string",  "ToolTip_11"},
@@ -275,7 +290,6 @@ namespace SpellWork
 	        new String[] {"string",  "ToolTip_13"},
 	        new String[] {"string",  "ToolTip_14"},
 	        new String[] {"string",  "ToolTip_15"},
-	        new String[] {"string",  "ToolTip_16"},
 	        new String[] {"uint",    "ToolTipFlags"},
 	        new String[] {"uint",    "ManaCostPercentage"},
 	        new String[] {"uint",    "StartRecoveryCategory"},
