@@ -8,8 +8,6 @@ namespace SpellWork
 {
     public class SpellInfo
     {
-
-
         public static void SpellViewInfo(DataRow spellInfo, RichTextBox _rtSpellInfo)
         {
             //_rtSpellInfo.SelectionColor = Color.Blue;
@@ -51,6 +49,7 @@ namespace SpellWork
 
             if (description != "")
                 info += "\r\nDescription: " + description;
+
             if (tooltip != "")
                 info += "\r\nToolTip: " + tooltip;
 
@@ -61,24 +60,24 @@ namespace SpellWork
 
         static String ViewInfoFromOtherTable(DataRow spellInfo)
         {
-            string body = null;
+            var body = "";
+
             var casttime = SelectCastTimes((string)spellInfo["CastingTimeIndex"]);
-            if (casttime != null)
-                body += "\r\nSpellCastTime: " + casttime;
+            body += (casttime != null) ? casttime : "";
 
             var duration = SelectDuration((string)spellInfo["DurationIndex"]);
-            if (duration != null)
-                body += "\r\nSpellDuration: " + duration;
+            body += (duration != null) ? duration : "";
 
             var radius = SelectRadius((string)spellInfo["EffectRadiusIndex_1"], (string)spellInfo["EffectRadiusIndex_2"], (string)spellInfo["EffectRadiusIndex_3"]);
-            if (radius != null)
-                body += "\r\nSpellRadius: " + radius;
+            body += (radius != null) ? radius : "";
 
             var range = SelectRange((string)spellInfo["RangeIndex"]);
-            if (range != null)
-                body += "\r\nSpellRange: " + range;
+            body += (range != null) ? range : "";
 
-            if (body==null)
+            var skill = SelectSkillLineAbility((string)spellInfo["ID"]);
+            body += (skill != null) ? skill : "";
+
+            if (body=="")
                 return "";
 
             var info = "\r\n------------------------------" +
@@ -101,28 +100,28 @@ namespace SpellWork
                      + (spellAura3 == AuraType.SPELL_AURA_NONE ? "" : "\r\nEffectApplyAuraName_3: " + spellAura3);
 
             var effekt1 = (SpellEffects)uint.Parse((string)spellInfo["Effect_1"]);
-            var effekt2 = (SpellEffects)uint.Parse((string)spellInfo["Effect_1"]);
-            var effekt3 = (SpellEffects)uint.Parse((string)spellInfo["Effect_1"]);
+            var effekt2 = (SpellEffects)uint.Parse((string)spellInfo["Effect_2"]);
+            var effekt3 = (SpellEffects)uint.Parse((string)spellInfo["Effect_3"]);
 
             var effekts = (effekt1 == SpellEffects.NO_SPELL_EFFECT ? "" : "\r\nEffect_1: " + effekt1)
-                        + (effekt2 == SpellEffects.NO_SPELL_EFFECT || effekt2 == effekt1 ? "" : "\r\nEffect_2: " + effekt2)
-                        + (effekt3 == SpellEffects.NO_SPELL_EFFECT || effekt3 == effekt2 ? "" : "\r\nEffect_3: " + effekt3);
+                        + (effekt2 == SpellEffects.NO_SPELL_EFFECT ? "" : "\r\nEffect_2: " + effekt2)
+                        + (effekt3 == SpellEffects.NO_SPELL_EFFECT ? "" : "\r\nEffect_3: " + effekt3);
 
             var targetA1 = (Targets)uint.Parse((string)spellInfo["EffectImplicitTargetA_1"]);
             var targetA2 = (Targets)uint.Parse((string)spellInfo["EffectImplicitTargetA_2"]);
             var targetA3 = (Targets)uint.Parse((string)spellInfo["EffectImplicitTargetA_3"]);
 
             var targetsA = (targetA1 == Targets.NO_TARGET ? "" : "\r\nEffectImplicitTargetA_1: " + targetA1)
-                         + (targetA2 == Targets.NO_TARGET || targetA2 == targetA1 ? "" : "\r\nEffectImplicitTargetA_2: " + targetA2)
-                         + (targetA3 == Targets.NO_TARGET || targetA3 == targetA2 ? "" : "\r\nEffectImplicitTargetA_3: " + targetA3);
+                         + (targetA2 == Targets.NO_TARGET ? "" : "\r\nEffectImplicitTargetA_2: " + targetA2)
+                         + (targetA3 == Targets.NO_TARGET ? "" : "\r\nEffectImplicitTargetA_3: " + targetA3);
 
             var targetB1 = (Targets)uint.Parse((string)spellInfo["EffectImplicitTargetB_1"]);
             var targetB2 = (Targets)uint.Parse((string)spellInfo["EffectImplicitTargetB_2"]);
             var targetB3 = (Targets)uint.Parse((string)spellInfo["EffectImplicitTargetB_3"]);
 
             var targetsB = (targetB1 == Targets.NO_TARGET ? "" : "\r\nEffectImplicitTargetB_1: " + targetA1)
-                         + (targetB2 == Targets.NO_TARGET || targetB2 == targetB1 ? "" : "\r\nEffectImplicitTargetB_2: " + targetB2)
-                         + (targetB3 == Targets.NO_TARGET || targetB3 == targetB2 ? "" : "\r\nEffectImplicitTargetB_3: " + targetB3);
+                         + (targetB2 == Targets.NO_TARGET ? "" : "\r\nEffectImplicitTargetB_2: " + targetB2)
+                         + (targetB3 == Targets.NO_TARGET ? "" : "\r\nEffectImplicitTargetB_3: " + targetB3);
 
             
             var info = "\r\n------------------------------"
@@ -192,11 +191,60 @@ namespace SpellWork
                 return null;
 
             var result = query.CopyToDataTable<DataRow>();
-            var res = "\r\nRadius = ";
+            var res = "\r\nRadius:";
             //tested
             foreach (var str in result.Select())
             {
-                res += String.Format("{0}, {1}, {2}", str[1], str[2], str[3]) + " ";
+                res += String.Format(" ID - {0}, Radius1 = {1}, Unk = {2}, Radius2 = {3}",str[0], str[1], str[2], str[3]);
+            }
+            return res;
+        }
+
+        static String SelectSkillLineAbility(string entry)
+        {
+            var query =
+               from skillLineAbility in Spell.SkillLineAbility.AsEnumerable()
+               join skillLine in Spell.SkillLine.AsEnumerable()
+               on skillLineAbility.Field<string>("SkillId") equals skillLine.Field<string>("ID") 
+               where skillLineAbility.Field<string>("SpellId") == entry
+               select new 
+               {
+                   Name = skillLine.Field<string>("SkillName_"+Spell.Locales),
+                   SkillId = skillLineAbility.Field<string>("SkillId"),
+                   Racemask = skillLineAbility.Field<string>("Racemask"),
+                   Classmask = skillLineAbility.Field<string>("Classmask"),
+                   RacemaskNot = skillLineAbility.Field<string>("RacemaskNot"),
+                   ClassmaskNot = skillLineAbility.Field<string>("ClassmaskNot"),
+                   ReqSkillValue = skillLineAbility.Field<string>("ReqSkillValue"),
+                   ForwardSpellid = skillLineAbility.Field<string>("ForwardSpellid"),
+                   LearnOnGetSkill = skillLineAbility.Field<string>("LearnOnGetSkill"),
+                   MaxValue = skillLineAbility.Field<string>("MaxValue"),
+                   MinValue = skillLineAbility.Field<string>("MinValue"),
+                   CharacterPoints_1 = skillLineAbility.Field<string>("CharacterPoints_1"),
+                   CharacterPoints_2 = skillLineAbility.Field<string>("CharacterPoints_2")
+               };
+
+            if (query.Count() == 0)
+                return null;
+
+            //   var result = query.CopyToDataTable<DataRow>();
+            var res = "\r\nSkill: ID - ";
+           
+            foreach (var rows in query)
+            {
+                res += rows.SkillId;
+                res += " Name: " + rows.Name;
+                res += "\r\nRacemask = " + rows.Racemask;
+                res += ", Classmask = " + rows.Classmask;
+                res += ", RacemaskNot = " + rows.RacemaskNot;
+                res += ", ClassmaskNot = " + rows.ClassmaskNot;
+                res += "\r\nReqSkillValue = " + rows.ReqSkillValue;
+                res += ", ForwardSpellid = " + rows.ForwardSpellid;
+                res += ", LearnOnGetSkill = " + rows.LearnOnGetSkill;
+                res += "\r\nMaxValue = " + rows.MaxValue;
+                res += ", MaxValue = " + rows.SkillId;
+                res += "\r\nCharacterPoints_1 = " + rows.CharacterPoints_1;
+                res += ", CharacterPoints_2 = " + rows.CharacterPoints_2;
             }
             return res;
         }
