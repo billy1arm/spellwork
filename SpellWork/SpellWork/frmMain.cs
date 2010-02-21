@@ -41,19 +41,20 @@ namespace SpellWork
                 // tested
                 _clbProcFlaf.Items.Add(elem.ToString().Substring(10));
             }
-            SetEnumValues(_cbSpellFamilyNames, typeof(SpellFamilyNames), true);
-            SetEnumValues(_cbSpellAura,        typeof(AuraType),        false);
-            SetEnumValues(_cbSpellEffect,      typeof(SpellEffects),    false);
-            SetEnumValues(_cbTarget1,          typeof(Targets),          true);
+            SetEnumValues(_cbSpellFamilyNames, typeof(SpellFamilyNames));
+            SetEnumValues(_cbSpellAura,        typeof(AuraType));
+            SetEnumValues(_cbSpellEffect,      typeof(SpellEffects));
+            SetEnumValues(_cbTarget1,          typeof(Targets));
+            SetEnumValues(_cbTarget2,          typeof(Targets));
         }
 
-        private void SetEnumValues(ComboBox cb, Type enums, bool first)
+        private void SetEnumValues(ComboBox cb, Type enums)
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("ID");
             dt.Columns.Add("NAME");
-            if (first)
-                dt.Rows.Add(new Object[] {-1, "No filter"});
+
+            dt.Rows.Add(new Object[] { -1, "No filter" });
             
             foreach (var str in Enum.GetValues(enums))
             {
@@ -95,6 +96,9 @@ namespace SpellWork
             var bTarget1     = _cbTarget1.SelectedIndex == 0 ? false : true;
             var fTarget1     = _cbTarget1.SelectedValue.ToString();
 
+            var bTarget2     = _cbTarget2.SelectedIndex == 0 ? false : true;
+            var fTarget2     = _cbTarget2.SelectedValue.ToString();
+
             var query =
                 from spell in spellData.AsEnumerable()
                 // filter
@@ -107,8 +111,14 @@ namespace SpellWork
                    && (!bSpellEffect || spell.Field<string>("Effect_1") == fSpellEffect
                                      || spell.Field<string>("Effect_2") == fSpellEffect
                                      || spell.Field<string>("Effect_3") == fSpellEffect)
-
-                   && (!bTarget1     || spell.Field<string>("Targets")  == fTarget1)
+                    // target A
+                   && (!bTarget1     || spell.Field<string>("EffectImplicitTargetA_1") == fTarget1
+                                     || spell.Field<string>("EffectImplicitTargetA_2") == fTarget1
+                                     || spell.Field<string>("EffectImplicitTargetA_3") == fTarget1)
+                    // target B
+                   && (!bTarget2     || spell.Field<string>("EffectImplicitTargetB_1") == fTarget2
+                                     || spell.Field<string>("EffectImplicitTargetB_2") == fTarget2
+                                     || spell.Field<string>("EffectImplicitTargetB_3") == fTarget2)
 
                 select spell;
 
@@ -117,8 +127,11 @@ namespace SpellWork
             tempTable = query.CopyToDataTable<DataRow>();
             foreach (var element in tempTable.Select())
             {
-                _lvSpellList.Items.Add(new ListViewItem(new String[] { 
-                "" + element["ID"], "" + element["SpellName_"+Spell.Locales] + " (" + element["Rank_"+Spell.Locales] + ")" }));
+                var id   = element["ID"].ToString();
+                var name = element["SpellName_" + Spell.Locales].ToString();
+                var rank = element["Rank_" + Spell.Locales].ToString() == "" ? "" : " (" + element["Rank_" + Spell.Locales] + ")";
+
+                _lvSpellList.Items.Add(new ListViewItem(new String[] { id, name + rank}));
             }
         }
 
