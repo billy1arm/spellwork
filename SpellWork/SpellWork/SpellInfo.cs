@@ -25,9 +25,15 @@ namespace SpellWork
                 uint.Parse((string)spellInfo["Attributes"]), uint.Parse((string)spellInfo["AttributesEx"]), uint.Parse((string)spellInfo["AttributesEx2"]), uint.Parse((string)spellInfo["AttributesEx3"]),
                 uint.Parse((string)spellInfo["AttributesEx4"]), uint.Parse((string)spellInfo["AttributesEx5"]), uint.Parse((string)spellInfo["AttributesEx6"]), uint.Parse((string)spellInfo["AttributesExG"])));
 
-            _rtSpellInfo.AppendText(ViewGlags(spellInfo));
+            _rtSpellInfo.AppendText(ViewFlags(spellInfo));
 
             _rtSpellInfo.AppendText(ViewInfoFromOtherTable(spellInfo));
+
+            _rtSpellInfo.AppendText(ViewReagent(spellInfo));
+
+            _rtSpellInfo.AppendText(ViewOtherSpellInfo(spellInfo, typeof(SpellFields2), 2));
+
+            _rtSpellInfo.AppendText(ViewOtherSpellInfo(spellInfo, typeof(SpellFields3), 3));
             
             //todo: more info
         }
@@ -41,94 +47,95 @@ namespace SpellWork
             var tooltip     = spellInfo["ToolTip_" + Spell.Locales].ToString();
 
             var info = String.Format("ID - {0} {1} ", entry, name);
-            
-            if (rank != "")
-                info += " (" + rank + ")";
-            
-            info += "\r\n";
+            info += rank == "" ? "" : " (" + rank + ")";
+            info += (description == "") ? "" : "\r\nDescription: " + description;
+            info += (tooltip == "") ? "" : "\r\nToolTip: " + tooltip;
 
-            if (description != "")
-                info += "\r\nDescription: " + description;
-
-            if (tooltip != "")
-                info += "\r\nToolTip: " + tooltip;
-
-            info += "\r\n==========================================";
-
-            return info;
+            return info + "\r\n==========================================";
         }
 
         static String ViewInfoFromOtherTable(DataRow spellInfo)
         {
-            var body = "";
+            var info = "";
 
             var casttime = SelectCastTimes((string)spellInfo["CastingTimeIndex"]);
-            body += (casttime != null) ? casttime : "";
+            info += (casttime != null) ? casttime : "";
 
             var duration = SelectDuration((string)spellInfo["DurationIndex"]);
-            body += (duration != null) ? duration : "";
+            info += (duration != null) ? duration : "";
 
             var radius = SelectRadius((string)spellInfo["EffectRadiusIndex_1"], (string)spellInfo["EffectRadiusIndex_2"], (string)spellInfo["EffectRadiusIndex_3"]);
-            body += (radius != null) ? radius : "";
+            info += (radius != null) ? radius : "";
 
             var range = SelectRange((string)spellInfo["RangeIndex"]);
-            body += (range != null) ? range : "";
+            info += (range != null) ? range : "";
 
-            var skill = SelectSkillLineAbility((string)spellInfo["ID"]);
-            body += (skill != null) ? skill : "";
+            //var skill = SelectSkillLineAbility((string)spellInfo["ID"]);
+            //info += (skill != null) ? skill : "";
 
-            if (body=="")
-                return "";
-
-            var info = "\r\n------------------------------" +
-                            body+
-                       "\r\n------------------------------";
-
-            return info;
+            return (info == "") ? "" : info + "\r\n------------------------------";
         }
 
-        static String ViewGlags(DataRow spellInfo)
+        static String ViewReagent(DataRow spellInfo)
         {
-            var spellFemily = "\r\nSpellFamilyNames: " + (SpellFamilyNames)uint.Parse((string)spellInfo["SpellFamilyName"]);
+            var info = "";
+            for (int i = 1; i < 9; i++)
+            {
+                var reagent = (string)spellInfo["Reagent_" + i];
+                var count   = (string)spellInfo["ReagentCount_" + i];
+                info += (reagent != "0") ? String.Format("\r\nReagent_{0} ItemID = {1} (Count = {2})", i, reagent, count) : "";
+            }
 
-            var spellAura1 = (AuraType)uint.Parse((string)spellInfo["EffectApplyAuraName_1"]);
-            var spellAura2 = (AuraType)uint.Parse((string)spellInfo["EffectApplyAuraName_2"]);
-            var spellAura3 = (AuraType)uint.Parse((string)spellInfo["EffectApplyAuraName_3"]);
+            return (info == "") ? "" : info + "\r\n------------------------------";
+        }
 
-            var aurs = (spellAura1 == AuraType.SPELL_AURA_NONE ? "" : "\r\nEffectApplyAuraName_1: " + spellAura1)
-                     + (spellAura2 == AuraType.SPELL_AURA_NONE ? "" : "\r\nEffectApplyAuraName_2: " + spellAura2)
-                     + (spellAura3 == AuraType.SPELL_AURA_NONE ? "" : "\r\nEffectApplyAuraName_3: " + spellAura3);
+        static String ViewFlags(DataRow spellInfo)
+        {
+            int MAX = 4;
+            var info = "";
+            info = "\r\nSpellFamilyNames: " + (SpellFamilyNames)uint.Parse((string)spellInfo["SpellFamilyName"]);
 
-            var effekt1 = (SpellEffects)uint.Parse((string)spellInfo["Effect_1"]);
-            var effekt2 = (SpellEffects)uint.Parse((string)spellInfo["Effect_2"]);
-            var effekt3 = (SpellEffects)uint.Parse((string)spellInfo["Effect_3"]);
+            for (int i = 1; i < MAX; i++)
+            {
+                var spellAura = (AuraType)uint.Parse((string)spellInfo["EffectApplyAuraName_" + i]);
+                info += (spellAura == AuraType.SPELL_AURA_NONE) ? "" : String.Format("\r\nEffectApplyAuraName_{0}: {1}", i, spellAura);
+            }
 
-            var effekts = (effekt1 == SpellEffects.NO_SPELL_EFFECT ? "" : "\r\nEffect_1: " + effekt1)
-                        + (effekt2 == SpellEffects.NO_SPELL_EFFECT ? "" : "\r\nEffect_2: " + effekt2)
-                        + (effekt3 == SpellEffects.NO_SPELL_EFFECT ? "" : "\r\nEffect_3: " + effekt3);
+            for (int i = 1; i < MAX; i++)
+            {
+                var effekt = (SpellEffects)uint.Parse((string)spellInfo["Effect_" + i]);
+                info += (effekt == SpellEffects.NO_SPELL_EFFECT) ? "" : String.Format("\r\nEffect_{0}: {1}", i, effekt);
+            }
 
-            var targetA1 = (Targets)uint.Parse((string)spellInfo["EffectImplicitTargetA_1"]);
-            var targetA2 = (Targets)uint.Parse((string)spellInfo["EffectImplicitTargetA_2"]);
-            var targetA3 = (Targets)uint.Parse((string)spellInfo["EffectImplicitTargetA_3"]);
+            for (int i = 1; i < MAX; i++)
+            {
+                var targetA = (SpellEffects)uint.Parse((string)spellInfo["EffectImplicitTargetA_" + i]);
+                info += (targetA == SpellEffects.NO_SPELL_EFFECT) ? "" : String.Format("\r\nEffectImplicitTargetA_{0}: {1}", i, targetA);
+            }
 
-            var targetsA = (targetA1 == Targets.NO_TARGET ? "" : "\r\nEffectImplicitTargetA_1: " + targetA1)
-                         + (targetA2 == Targets.NO_TARGET ? "" : "\r\nEffectImplicitTargetA_2: " + targetA2)
-                         + (targetA3 == Targets.NO_TARGET ? "" : "\r\nEffectImplicitTargetA_3: " + targetA3);
+            for (int i = 1; i < MAX; i++)
+            {
+                var targetB = (SpellEffects)uint.Parse((string)spellInfo["EffectImplicitTargetB_" + i]);
+                info += (targetB == SpellEffects.NO_SPELL_EFFECT) ? "" : String.Format("\r\nEffectImplicitTargetB_{0}: {1}", i, targetB);
+            }
 
-            var targetB1 = (Targets)uint.Parse((string)spellInfo["EffectImplicitTargetB_1"]);
-            var targetB2 = (Targets)uint.Parse((string)spellInfo["EffectImplicitTargetB_2"]);
-            var targetB3 = (Targets)uint.Parse((string)spellInfo["EffectImplicitTargetB_3"]);
+            return (info == "") ? "" : info + "\r\n------------------------------";
+        }
 
-            var targetsB = (targetB1 == Targets.NO_TARGET ? "" : "\r\nEffectImplicitTargetB_1: " + targetA1)
-                         + (targetB2 == Targets.NO_TARGET ? "" : "\r\nEffectImplicitTargetB_2: " + targetB2)
-                         + (targetB3 == Targets.NO_TARGET ? "" : "\r\nEffectImplicitTargetB_3: " + targetB3);
+        static String ViewOtherSpellInfo(DataRow spellInfo, Type fields, int count)
+        {
+            var info = "";
 
-            
-            var info = "\r\n------------------------------"
-                     + spellFemily + aurs + effekts + targetsA + targetsB
-                     + "\r\n------------------------------";
-            
-            return info;
+            foreach (var field in Enum.GetValues(fields))
+            {
+                for (int i = 1; i <= count; i++)
+                {
+                    var val = spellInfo[field + "_" + i].ToString();
+                    info += (val == "0") ? "" : String.Format("\r\n{0}_{1} = {2}", field, i, val);
+                }
+            }
+
+            return (info == "") ? "" : info + "\r\n------------------------------";
         }
 
         static String SelectCastTimes(string CastingTimeIndex)

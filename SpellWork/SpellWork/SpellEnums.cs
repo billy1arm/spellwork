@@ -714,4 +714,36 @@
         PROC_EX_EX_TRIGGER_ALWAYS       = 0x0010000,                 // If set trigger always ( no matter another flags) used for drop charges
         PROC_EX_EX_ONE_TIME_TRIGGER     = 0x0020000                  // If set trigger always but only one time (not used)
     };
+
+    public enum SpellFields3
+    {
+        EffectDieSides,
+        EffectBaseDice,
+        EffectDicePerLevel,
+        EffectRealPointsPerLevel,
+        EffectBasePoints,
+        EffectMechanic,
+        EffectApplyAuraName,
+        EffectAmplitude,
+        EffectMultipleValue,
+        EffectChainTargets,
+        EffectItemType,
+        EffectMiscValueA,
+        EffectMiscValueB,
+        EffectTriggerSpell,
+        EffectPointsPerComboPoint,
+        EffectSpellClassMaskA,
+        EffectSpellClassMaskB,
+        EffectSpellClassMaskC,
+        DmgMultiplier
+    };
+
+    public enum SpellFields2
+    {
+        Stances,
+        StancesNot,
+        Totem,
+        SpellVisual,
+        TotemCategory
+    };
 }
