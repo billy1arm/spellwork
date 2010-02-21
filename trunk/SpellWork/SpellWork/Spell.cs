@@ -17,8 +17,8 @@ namespace SpellWork
         public Spell()
         {
             //todo: selected folder in settings
-            //try
-            //{
+            try
+            {
                 var path = @"dbc\";
 
                 new DBCReader(path + "Spell.dbc",            ref SpellData,        SpellStructure);
@@ -26,16 +26,16 @@ namespace SpellWork
                 new DBCReader(path + "SpellRadius.dbc",      ref SpellRadius,      SpellRadiusStructure);
                 new DBCReader(path + "SpellDuration.dbc",    ref SpellDuration,    DurationStructure);
                 new DBCReader(path + "SpellRange.dbc",       ref SpellRange,       SpellRangeStructure);
-                new DBCReader(path + "SkillLineAbility.dbc", ref SkillLineAbility, SkillLineAbilityStructure);
-                new DBCReader(path + "SkillLine.dbc",        ref SkillLine,        SkillLineStructure);
+                //new DBCReader(path + "SkillLineAbility.dbc", ref SkillLineAbility, SkillLineAbilityStructure);
+                //new DBCReader(path + "SkillLine.dbc",        ref SkillLine,        SkillLineStructure);
 
                 GetLocale();
-            //}
-            //catch
-            //{
-            //    System.Windows.Forms.MessageBox.Show("Not files in \"\\dbc\" folder");
-            //    System.Windows.Forms.Application.Exit();
-            //}
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("Not files in \"\\dbc\" folder");
+                System.Windows.Forms.Application.Exit();
+            }
        }
         
         static void GetLocale()
@@ -107,11 +107,11 @@ namespace SpellWork
 	        new String[] {"uint",    "AttributesEx5"},//used
 	        new String[] {"uint",    "AttributesEx6"},//used
 	        new String[] {"uint",    "AttributesExG"},//used
-	        new String[] {"uint",    "Stances"},
-	        new String[] {"uint",    "Stances_2"},
-	        new String[] {"uint",    "StancesNot"},
-	        new String[] {"uint",    "StancesNot_2"},
-	        new String[] {"uint",    "Targets"},
+	        new String[] {"uint",    "Stances_1"}, //used
+	        new String[] {"uint",    "Stances_2"}, //used
+	        new String[] {"uint",    "StancesNot_1"}, //used
+	        new String[] {"uint",    "StancesNot_2"}, //used
+	        new String[] {"uint",    "Targets"},        // ???
 	        new String[] {"uint",    "TargetCreatureType"},
 	        new String[] {"uint",    "RequiresSpellFocus"},
 	        new String[] {"uint",    "FacingCasterFlags"},
@@ -145,48 +145,48 @@ namespace SpellWork
 	        new String[] {"float",   "Speed"},
 	        new String[] {"uint",    "ModalNextSpell"},
 	        new String[] {"uint",    "StackAmount"},
-	        new String[] {"uint",    "Totem_1"},
-	        new String[] {"uint",    "Totem_2"},
-	        new String[] {"int",     "Reagent_1"},
-	        new String[] {"int",     "Reagent_2"},
-	        new String[] {"int",     "Reagent_3"},
-	        new String[] {"int",     "Reagent_4"},
-	        new String[] {"int",     "Reagent_5"},
-	        new String[] {"int",     "Reagent_6"},
-	        new String[] {"int",     "Reagent_7"},
-	        new String[] {"int",     "Reagent_8"},
-	        new String[] {"uint",    "ReagentCount_1"},
-	        new String[] {"uint",    "ReagentCount_2"},
-	        new String[] {"uint",    "ReagentCount_3"},
-	        new String[] {"uint",    "ReagentCount_4"},
-	        new String[] {"uint",    "ReagentCount_5"},
-	        new String[] {"uint",    "ReagentCount_6"},
-	        new String[] {"uint",    "ReagentCount_7"},
-	        new String[] {"uint",    "ReagentCount_8"},
+	        new String[] {"uint",    "Totem_1"},   //used
+	        new String[] {"uint",    "Totem_2"},   //used
+	        new String[] {"int",     "Reagent_1"}, //used
+	        new String[] {"int",     "Reagent_2"}, //used
+	        new String[] {"int",     "Reagent_3"}, //used
+	        new String[] {"int",     "Reagent_4"}, //used
+	        new String[] {"int",     "Reagent_5"}, //used
+	        new String[] {"int",     "Reagent_6"}, //used
+	        new String[] {"int",     "Reagent_7"}, //used
+	        new String[] {"int",     "Reagent_8"}, //used
+	        new String[] {"uint",    "ReagentCount_1"}, //used
+	        new String[] {"uint",    "ReagentCount_2"}, //used
+	        new String[] {"uint",    "ReagentCount_3"}, //used
+	        new String[] {"uint",    "ReagentCount_4"}, //used
+	        new String[] {"uint",    "ReagentCount_5"}, //used
+	        new String[] {"uint",    "ReagentCount_6"}, //used
+	        new String[] {"uint",    "ReagentCount_7"}, //used
+	        new String[] {"uint",    "ReagentCount_8"}, //used
 	        new String[] {"int",     "EquippedItemClass"},
 	        new String[] {"int",     "EquippedItemSubClassMask"},
 	        new String[] {"int",     "EquippedItemInventoryTypeMask"},
-	        new String[] {"uint",    "Effect_1"},
-	        new String[] {"uint",    "Effect_2"},
-	        new String[] {"uint",    "Effect_3"},
-	        new String[] {"int",     "EffectDieSides_1"},
-	        new String[] {"int",     "EffectDieSides_2"},
-	        new String[] {"int",     "EffectDieSides_3"},
-	        new String[] {"uint",    "EffectBaseDice_1"},
-	        new String[] {"uint",    "EffectBaseDice_2"},
-	        new String[] {"uint",    "EffectBaseDice_3"},
-	        new String[] {"float",   "EffectDicePerLevel_1"},
-	        new String[] {"float",   "EffectDicePerLevel_2"},
-	        new String[] {"float",   "EffectDicePerLevel_3"},
-	        new String[] {"float",   "EffectRealPointsPerLevel_1"},
-	        new String[] {"float",   "EffectRealPointsPerLevel_2"},
-	        new String[] {"float",   "EffectRealPointsPerLevel_3"},
-	        new String[] {"int",     "EffectBasePoints_1"},
-	        new String[] {"int",     "EffectBasePoints_2"},
-	        new String[] {"int",     "EffectBasePoints_3"},
-	        new String[] {"uint",    "EffectMechanic_1"},
-	        new String[] {"uint",    "EffectMechanic_2"},
-	        new String[] {"uint",    "EffectMechanic_3"},
+	        new String[] {"uint",    "Effect_1"}, //used
+	        new String[] {"uint",    "Effect_2"}, //used
+	        new String[] {"uint",    "Effect_3"}, //used
+	        new String[] {"int",     "EffectDieSides_1"}, //used
+	        new String[] {"int",     "EffectDieSides_2"}, //used
+	        new String[] {"int",     "EffectDieSides_3"}, //used
+	        new String[] {"uint",    "EffectBaseDice_1"}, //used
+	        new String[] {"uint",    "EffectBaseDice_2"}, //used
+	        new String[] {"uint",    "EffectBaseDice_3"}, //used
+	        new String[] {"float",   "EffectDicePerLevel_1"}, //used
+	        new String[] {"float",   "EffectDicePerLevel_2"}, //used
+	        new String[] {"float",   "EffectDicePerLevel_3"}, //used
+	        new String[] {"float",   "EffectRealPointsPerLevel_1"}, //used
+	        new String[] {"float",   "EffectRealPointsPerLevel_2"}, //used
+	        new String[] {"float",   "EffectRealPointsPerLevel_3"}, //used
+	        new String[] {"int",     "EffectBasePoints_1"}, //used
+	        new String[] {"int",     "EffectBasePoints_2"}, //used
+	        new String[] {"int",     "EffectBasePoints_3"}, //used
+	        new String[] {"uint",    "EffectMechanic_1"}, //used
+	        new String[] {"uint",    "EffectMechanic_2"}, //used
+	        new String[] {"uint",    "EffectMechanic_3"}, //used
 	        new String[] {"uint",    "EffectImplicitTargetA_1"}, //used
 	        new String[] {"uint",    "EffectImplicitTargetA_2"}, //used
 	        new String[] {"uint",    "EffectImplicitTargetA_3"}, //used
@@ -196,44 +196,44 @@ namespace SpellWork
 	        new String[] {"uint",    "EffectRadiusIndex_1"}, //used
 	        new String[] {"uint",    "EffectRadiusIndex_2"}, //used
 	        new String[] {"uint",    "EffectRadiusIndex_3"}, //used
-	        new String[] {"uint",    "EffectApplyAuraName_1"},
-	        new String[] {"uint",    "EffectApplyAuraName_2"},
-	        new String[] {"uint",    "EffectApplyAuraName_3"},
-	        new String[] {"uint",    "EffectAmplitude_1"},
-	        new String[] {"uint",    "EffectAmplitude_2"},
-	        new String[] {"uint",    "EffectAmplitude_3"},
-	        new String[] {"float",   "EffectMultipleValue_1"},
-	        new String[] {"float",   "EffectMultipleValue_2"},
-	        new String[] {"float",   "EffectMultipleValue_3"},
-	        new String[] {"uint",    "EffectChainTargets_1"},
-	        new String[] {"uint",    "EffectChainTargets_2"},
-	        new String[] {"uint",    "EffectChainTargets_3"},
-	        new String[] {"uint",    "EffectItemType_1"},
-	        new String[] {"uint",    "EffectItemType_2"},
-	        new String[] {"uint",    "EffectItemType_3"},
-	        new String[] {"int",     "EffectMiscValue_1"},
-	        new String[] {"int",     "EffectMiscValue_2"},
-	        new String[] {"int",     "EffectMiscValue_3"},
-	        new String[] {"int",     "EffectMiscValueB_1"},
-	        new String[] {"int",     "EffectMiscValueB_2"},
-	        new String[] {"int",     "EffectMiscValueB_3"},
-	        new String[] {"uint",    "EffectTriggerSpell_1"},
-	        new String[] {"uint",    "EffectTriggerSpell_2"},
-	        new String[] {"uint",    "EffectTriggerSpell_3"},
-	        new String[] {"float",   "EffectPointsPerComboPoint_1"},
-	        new String[] {"float",   "EffectPointsPerComboPoint_2"},
-	        new String[] {"float",   "EffectPointsPerComboPoint_3"},
-	        new String[] {"uint",    "EffectSpellClassMaskA_1"},
-	        new String[] {"uint",    "EffectSpellClassMaskA_2"},
-	        new String[] {"uint",    "EffectSpellClassMaskA_3"},
-	        new String[] {"uint",    "EffectSpellClassMaskB_1"},
-	        new String[] {"uint",    "EffectSpellClassMaskB_2"},
-	        new String[] {"uint",    "EffectSpellClassMaskB_3"},
-	        new String[] {"uint",    "EffectSpellClassMaskC_1"},
-	        new String[] {"uint",    "EffectSpellClassMaskC_2"},
-	        new String[] {"uint",    "EffectSpellClassMaskC_3"},
-	        new String[] {"uint",    "SpellVisual_1"},
-	        new String[] {"uint",    "SpellVisual_2"},
+	        new String[] {"uint",    "EffectApplyAuraName_1"}, //used
+	        new String[] {"uint",    "EffectApplyAuraName_2"}, //used
+	        new String[] {"uint",    "EffectApplyAuraName_3"}, //used
+	        new String[] {"uint",    "EffectAmplitude_1"}, //used
+	        new String[] {"uint",    "EffectAmplitude_2"}, //used
+	        new String[] {"uint",    "EffectAmplitude_3"}, //used
+	        new String[] {"float",   "EffectMultipleValue_1"}, //used
+	        new String[] {"float",   "EffectMultipleValue_2"}, //used
+	        new String[] {"float",   "EffectMultipleValue_3"}, //used
+	        new String[] {"uint",    "EffectChainTargets_1"}, //used
+	        new String[] {"uint",    "EffectChainTargets_2"}, //used
+	        new String[] {"uint",    "EffectChainTargets_3"}, //used
+	        new String[] {"uint",    "EffectItemType_1"}, //used
+	        new String[] {"uint",    "EffectItemType_2"}, //used
+	        new String[] {"uint",    "EffectItemType_3"}, //used
+	        new String[] {"int",     "EffectMiscValueA_1"}, //used
+	        new String[] {"int",     "EffectMiscValueA_2"}, //used
+	        new String[] {"int",     "EffectMiscValueA_3"}, //used
+	        new String[] {"int",     "EffectMiscValueB_1"}, //used
+	        new String[] {"int",     "EffectMiscValueB_2"}, //used
+	        new String[] {"int",     "EffectMiscValueB_3"}, //used
+	        new String[] {"uint",    "EffectTriggerSpell_1"}, //used
+	        new String[] {"uint",    "EffectTriggerSpell_2"}, //used
+	        new String[] {"uint",    "EffectTriggerSpell_3"}, //used
+	        new String[] {"float",   "EffectPointsPerComboPoint_1"}, //used
+	        new String[] {"float",   "EffectPointsPerComboPoint_2"}, //used
+	        new String[] {"float",   "EffectPointsPerComboPoint_3"}, //used
+	        new String[] {"uint",    "EffectSpellClassMaskA_1"}, //used
+	        new String[] {"uint",    "EffectSpellClassMaskA_2"}, //used
+	        new String[] {"uint",    "EffectSpellClassMaskA_3"}, //used
+	        new String[] {"uint",    "EffectSpellClassMaskB_1"}, //used
+	        new String[] {"uint",    "EffectSpellClassMaskB_2"}, //used
+	        new String[] {"uint",    "EffectSpellClassMaskB_3"}, //used
+	        new String[] {"uint",    "EffectSpellClassMaskC_1"}, //used
+	        new String[] {"uint",    "EffectSpellClassMaskC_2"}, //used
+	        new String[] {"uint",    "EffectSpellClassMaskC_3"}, //used
+	        new String[] {"uint",    "SpellVisual_1"}, //used
+	        new String[] {"uint",    "SpellVisual_2"}, //used
 	        new String[] {"uint",    "SpellIconID"},
 	        new String[] {"uint",    "ActiveIconID"},
 	        new String[] {"uint",    "SpellPriority"},
@@ -318,14 +318,14 @@ namespace SpellWork
 	        new String[] {"uint",    "DmgClass"}, //used
 	        new String[] {"uint",    "PreventionType"},
 	        new String[] {"uint",    "StanceBarOrder"},
-	        new String[] {"float",   "DmgMultiplier_1"},
-	        new String[] {"float",   "DmgMultiplier_2"},
-	        new String[] {"float",   "DmgMultiplier_3"},
+	        new String[] {"float",   "DmgMultiplier_1"}, //used
+	        new String[] {"float",   "DmgMultiplier_2"}, //used
+	        new String[] {"float",   "DmgMultiplier_3"}, //used
 	        new String[] {"uint",    "MinFactionID"},
 	        new String[] {"uint",    "MinReputation"},
 	        new String[] {"uint",    "RequiredAuraVision"},
-	        new String[] {"uint",    "TotemCategory_1"},
-	        new String[] {"uint",    "TotemCategory_2"},
+	        new String[] {"uint",    "TotemCategory_1"}, //used
+	        new String[] {"uint",    "TotemCategory_2"}, //used
 	        new String[] {"uint",    "AreaGroupId"},
 	        new String[] {"uint",    "SchoolMask"},
 	        new String[] {"uint",    "RuneCostID"},
