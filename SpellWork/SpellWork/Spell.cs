@@ -12,6 +12,8 @@ namespace SpellWork
     /// </summary>
     public class Spell
     {
+        public static LocalesDBC Locales {get; set;}
+
         public Spell()
         {
             //todo: selected folder in settings
@@ -34,7 +36,7 @@ namespace SpellWork
             }
        }
         
-        void GetLocale()
+        static void GetLocale()
         {
             var locale = SpellData.Select().First()["SpellName_ruRU"].ToString();
             if (locale != "")
@@ -44,33 +46,33 @@ namespace SpellWork
 
         }
 
-        public LocalesDBC Locales { get; private set; }
+      //  public LocalesDBC Locales { get; private set; }
 
         #region SpellDataTable
         /// <summary>
         /// 
         /// </summary>
-        public DataTable SpellData            = new DataTable();
+        public static DataTable SpellData            = new DataTable();
         /// <summary>
         /// 
         /// </summary>
-        public DataTable SpellCastTime        = new DataTable();
+        public static DataTable SpellCastTime = new DataTable();
         /// <summary>
         /// 
         /// </summary>
-        public DataTable SpellRadius          = new DataTable();
+        public static DataTable SpellRadius = new DataTable();
         /// <summary>
         /// 
         /// </summary>
-        public DataTable SpellRange           = new DataTable();
+        public static DataTable SpellRange = new DataTable();
         /// <summary>
         /// 
         /// </summary>
-        public DataTable SpellDuration        = new DataTable();
+        public static DataTable SpellDuration = new DataTable();
         /// <summary>
         /// 
         /// </summary>
-        public DataTable SkillLineAbility     = new DataTable();
+        public static DataTable SkillLineAbility = new DataTable();
 
         #endregion
 

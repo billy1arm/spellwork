@@ -1,6 +1,6 @@
 ﻿namespace SpellWork
 {
-    partial class Form1
+    partial class frmMain
     {
         /// <summary>
         /// Требуется переменная конструктора.
