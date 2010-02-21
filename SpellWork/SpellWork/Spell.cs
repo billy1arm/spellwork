@@ -17,8 +17,8 @@ namespace SpellWork
         public Spell()
         {
             //todo: selected folder in settings
-            try
-            {
+            //try
+            //{
                 var path = @"dbc\";
 
                 new DBCReader(path + "Spell.dbc",            ref SpellData,        SpellStructure);
@@ -26,15 +26,16 @@ namespace SpellWork
                 new DBCReader(path + "SpellRadius.dbc",      ref SpellRadius,      SpellRadiusStructure);
                 new DBCReader(path + "SpellDuration.dbc",    ref SpellDuration,    DurationStructure);
                 new DBCReader(path + "SpellRange.dbc",       ref SpellRange,       SpellRangeStructure);
-               // new DBCReader(path + "SkillLineAbility.dbc", ref SkillLineAbility, SkillLineAbilityStructure);
+                new DBCReader(path + "SkillLineAbility.dbc", ref SkillLineAbility, SkillLineAbilityStructure);
+                new DBCReader(path + "SkillLine.dbc",        ref SkillLine,        SkillLineStructure);
 
                 GetLocale();
-            }
-            catch
-            {
-                System.Windows.Forms.MessageBox.Show("Not files in \"\\dbc\" folder");
-                System.Windows.Forms.Application.Exit();
-            }
+            //}
+            //catch
+            //{
+            //    System.Windows.Forms.MessageBox.Show("Not files in \"\\dbc\" folder");
+            //    System.Windows.Forms.Application.Exit();
+            //}
        }
         
         static void GetLocale()
@@ -60,7 +61,7 @@ namespace SpellWork
         /// <summary>
         /// 
         /// </summary>
-        public static DataTable SpellData            = new DataTable();
+        public static DataTable SpellData = new DataTable();
         /// <summary>
         /// 
         /// </summary>
@@ -81,6 +82,10 @@ namespace SpellWork
         /// 
         /// </summary>
         public static DataTable SkillLineAbility = new DataTable();
+        /// <summary>
+        /// 
+        /// </summary>
+        public static DataTable SkillLine = new DataTable();
 
         #endregion
 
@@ -423,6 +428,52 @@ namespace SpellWork
             new String[] {"int",     ""},
             new String[] {"int",     ""},
             new String[] {"int",     ""}*/
+        };
+
+        #endregion
+
+        #region SkillLine structure
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly String[][] SkillLineStructure = new String[][]
+        {
+            new String[] {"uint",     "ID"},
+            new String[] {"uint",     "SkillLineCategory"},
+            new String[] {"uint",     "unk"},
+            new String[] {"string",   "SkillName_enUS"},
+	        new String[] {"string",   "SkillName_koKR"},
+	        new String[] {"string",   "SkillName_frFR"},
+	        new String[] {"string",   "SkillName_deDE"},
+	        new String[] {"string",   "SkillName_zhCN"},
+	        new String[] {"string",   "SkillName_zhTW"},
+	        new String[] {"string",   "SkillName_esES"},
+	        new String[] {"string",   "SkillName_esMX"},
+	        new String[] {"string",   "SkillName_ruRU"},
+            new String[] {"string",   "SkillName_9"},
+            new String[] {"string",   "SkillName_10"},
+            new String[] {"string",   "SkillName_11"},
+            new String[] {"string",   "SkillName_12"},
+            new String[] {"string",   "SkillName_13"},
+            new String[] {"string",   "SkillName_14"},
+            new String[] {"string",   "SkillName_15"},
+            //new String[] {"string",   "Description_enUS"},
+            //new String[] {"string",   "Description_koKR"},
+            //new String[] {"string",   "Description_frFR"},
+            //new String[] {"string",   "Description_deDE"},
+            //new String[] {"string",   "Description_zhCN"},
+            //new String[] {"string",   "Description_zhTW"},
+            //new String[] {"string",   "Description_esES"},
+            //new String[] {"string",   "Description_esMX"},
+            //new String[] {"string",   "Description_ruRU"},
+            //new String[] {"string",   "Description_9"},
+            //new String[] {"string",   "Description_10"},
+            //new String[] {"string",   "Description_11"},
+            //new String[] {"string",   "Description_12"},
+            //new String[] {"string",   "Description_13"},
+            //new String[] {"string",   "Description_14"},
+            //new String[] {"string",   "Description_15"},
+            //new String[] {"uint",     "SpellIcon"}
         };
 
         #endregion
