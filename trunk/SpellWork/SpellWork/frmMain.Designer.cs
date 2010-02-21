@@ -72,6 +72,7 @@
             this._bProc = new System.Windows.Forms.Button();
             this._bSpellInfo = new System.Windows.Forms.Button();
             this.ItemTemplate = new Microsoft.VisualBasic.PowerPacks.DataRepeaterItem();
+            this._cbTarget2 = new System.Windows.Forms.ComboBox();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -183,6 +184,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this._lvSpellList);
+            this.groupBox1.Controls.Add(this._cbTarget2);
             this.groupBox1.Controls.Add(this._cbTarget1);
             this.groupBox1.Controls.Add(this._cbSpellEffect);
             this.groupBox1.Controls.Add(this._cbSpellAura);
@@ -206,10 +208,10 @@
             this.chSpellName});
             this._lvSpellList.FullRowSelect = true;
             this._lvSpellList.GridLines = true;
-            this._lvSpellList.Location = new System.Drawing.Point(0, 129);
+            this._lvSpellList.Location = new System.Drawing.Point(0, 151);
             this._lvSpellList.MultiSelect = false;
             this._lvSpellList.Name = "_lvSpellList";
-            this._lvSpellList.Size = new System.Drawing.Size(277, 249);
+            this._lvSpellList.Size = new System.Drawing.Size(277, 227);
             this._lvSpellList.TabIndex = 7;
             this._lvSpellList.UseCompatibleStateImageBehavior = false;
             this._lvSpellList.View = System.Windows.Forms.View.Details;
@@ -588,7 +590,16 @@
             // 
             this.ItemTemplate.Size = new System.Drawing.Size(158, 239);
             // 
-            // Form1
+            // _cbTarget2
+            // 
+            this._cbTarget2.FormattingEnabled = true;
+            this._cbTarget2.Location = new System.Drawing.Point(1, 125);
+            this._cbTarget2.Name = "_cbTarget2";
+            this._cbTarget2.Size = new System.Drawing.Size(273, 21);
+            this._cbTarget2.TabIndex = 5;
+            this._cbTarget2.SelectedIndexChanged += new System.EventHandler(this._cbSpellFamilyNames_SelectedIndexChanged);
+            // 
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -599,7 +610,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "frmMain";
             this.Text = "Spell Work";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
@@ -682,6 +693,7 @@
         private System.Windows.Forms.SplitContainer splitContainer6;
         private System.Windows.Forms.Button _bProcFlag;
         private Microsoft.VisualBasic.PowerPacks.DataRepeaterItem ItemTemplate;
+        private System.Windows.Forms.ComboBox _cbTarget2;
     }
 }
 

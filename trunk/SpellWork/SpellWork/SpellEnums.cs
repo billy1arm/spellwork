@@ -15,7 +15,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public enum SpellFamilyNames
+    public enum SpellFamilyNames 
     {
         SPELLFAMILY_GENERIC     = 0,
         SPELLFAMILY_UNK1        = 1, // events, holidays
@@ -562,8 +562,9 @@
     /// <summary>
     /// Target
     /// </summary>
-    enum Targets
+    public enum Targets
     {
+        NO_TARGET                               = 0,
         TARGET_SELF                             = 1,
         TARGET_RANDOM_ENEMY_CHAIN_IN_AREA       = 2,                 // only one spell has that, but regardless, it's a target type after all
         TARGET_RANDOM_FRIEND_CHAIN_IN_AREA      = 3,

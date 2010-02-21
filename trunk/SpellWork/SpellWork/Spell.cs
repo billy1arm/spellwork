@@ -182,12 +182,12 @@ namespace SpellWork
 	        new String[] {"uint",    "EffectMechanic_1"},
 	        new String[] {"uint",    "EffectMechanic_2"},
 	        new String[] {"uint",    "EffectMechanic_3"},
-	        new String[] {"uint",    "EffectImplicitTargetA_1"},
-	        new String[] {"uint",    "EffectImplicitTargetA_2"},
-	        new String[] {"uint",    "EffectImplicitTargetA_3"},
-	        new String[] {"uint",    "EffectImplicitTargetB_1"},
-	        new String[] {"uint",    "EffectImplicitTargetB_2"},
-	        new String[] {"uint",    "EffectImplicitTargetB_3"},
+	        new String[] {"uint",    "EffectImplicitTargetA_1"}, //used
+	        new String[] {"uint",    "EffectImplicitTargetA_2"}, //used
+	        new String[] {"uint",    "EffectImplicitTargetA_3"}, //used
+	        new String[] {"uint",    "EffectImplicitTargetB_1"}, //used
+	        new String[] {"uint",    "EffectImplicitTargetB_2"}, //used
+	        new String[] {"uint",    "EffectImplicitTargetB_3"}, //used
 	        new String[] {"uint",    "EffectRadiusIndex_1"}, //used
 	        new String[] {"uint",    "EffectRadiusIndex_2"}, //used
 	        new String[] {"uint",    "EffectRadiusIndex_3"}, //used
