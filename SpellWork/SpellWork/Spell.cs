@@ -26,27 +26,35 @@ namespace SpellWork
                 new DBCReader(path + "SpellRadius.dbc",      ref SpellRadius,      SpellRadiusStructure);
                 new DBCReader(path + "SpellDuration.dbc",    ref SpellDuration,    DurationStructure);
                 new DBCReader(path + "SpellRange.dbc",       ref SpellRange,       SpellRangeStructure);
-                new DBCReader(path + "SkillLineAbility.dbc", ref SkillLineAbility, SkillLineAbilityStructure);
+               // new DBCReader(path + "SkillLineAbility.dbc", ref SkillLineAbility, SkillLineAbilityStructure);
 
                 GetLocale();
             }
             catch
             {
-                System.Windows.Forms.MessageBox.Show("not files in \"\\dbc\" folder");
+                System.Windows.Forms.MessageBox.Show("Not files in \"\\dbc\" folder");
+                System.Windows.Forms.Application.Exit();
             }
        }
         
         static void GetLocale()
         {
-            var locale = SpellData.Select().First()["SpellName_ruRU"].ToString();
-            if (locale != "")
-                Locales = LocalesDBC.ruRU;
-            else
-                Locales = LocalesDBC.enUS;
-
+            bool local = false;
+            foreach (LocalesDBC loc in Enum.GetValues(typeof(LocalesDBC)))
+            {
+                if (SpellData.Select().First()["SpellName_" + loc].ToString() != "")
+                {
+                    Locales = loc;
+                    local = true;
+                    break;
+                }
+            }
+            if (!local)
+            {
+                System.Windows.Forms.MessageBox.Show("Unk dbc locale, application exit");
+                System.Windows.Forms.Application.Exit();
+            }
         }
-
-      //  public LocalesDBC Locales { get; private set; }
 
         #region SpellDataTable
         /// <summary>
@@ -82,19 +90,18 @@ namespace SpellWork
         /// </summary>
         public static readonly String[][] SpellStructure = new String[][]
         {
-           //на будущее: обнулить то, что не нужно :)
-	        new String[] {"uint",    "ID"}, 
+	        new String[] {"uint",    "ID"}, //used
 	        new String[] {"uint",    "Category"},
 	        new String[] {"uint",    "Dispel"},
 	        new String[] {"uint",    "Mechanic"},
-	        new String[] {"uint",    "Attributes"},
-	        new String[] {"uint",    "AttributesEx"},
-	        new String[] {"uint",    "AttributesEx2"},
-	        new String[] {"uint",    "AttributesEx3"},
-	        new String[] {"uint",    "AttributesEx4"},
-	        new String[] {"uint",    "AttributesEx5"},
-	        new String[] {"uint",    "AttributesEx6"},
-	        new String[] {"uint",    "AttributesExG"},
+	        new String[] {"uint",    "Attributes"},   //used
+	        new String[] {"uint",    "AttributesEx"}, //used
+	        new String[] {"uint",    "AttributesEx2"},//used
+	        new String[] {"uint",    "AttributesEx3"},//used
+	        new String[] {"uint",    "AttributesEx4"},//used
+	        new String[] {"uint",    "AttributesEx5"},//used
+	        new String[] {"uint",    "AttributesEx6"},//used
+	        new String[] {"uint",    "AttributesExG"},//used
 	        new String[] {"uint",    "Stances"},
 	        new String[] {"uint",    "Stances_2"},
 	        new String[] {"uint",    "StancesNot"},
@@ -111,7 +118,7 @@ namespace SpellWork
 	        new String[] {"uint",    "TargetAuraSpell"},
 	        new String[] {"uint",    "ExcludeCasterAuraSpell"},
 	        new String[] {"uint",    "ExcludeTargetAuraSpell"},
-	        new String[] {"uint",    "CastingTimeIndex"},
+	        new String[] {"uint",    "CastingTimeIndex"},//used
 	        new String[] {"uint",    "RecoveryTime"},
 	        new String[] {"uint",    "CategoryRecoveryTime"},
 	        new String[] {"uint",    "InterruptFlags"},
@@ -122,14 +129,14 @@ namespace SpellWork
 	        new String[] {"uint",    "ProcCharges"},
 	        new String[] {"uint",    "MaxLevel"},
 	        new String[] {"uint",    "BaseLevel"},
-	        new String[] {"uint",    "SpellLevel"},
-	        new String[] {"uint",    "DurationIndex"},
+	        new String[] {"uint",    "SpellLevel"},   //used
+	        new String[] {"uint",    "DurationIndex"},//used
 	        new String[] {"uint",    "PowerType"},
 	        new String[] {"uint",    "ManaCost"},
 	        new String[] {"uint",    "ManaCostPerLevel"},
 	        new String[] {"uint",    "ManaPerSecond"},
 	        new String[] {"uint",    "ManaPerSecondPerLeve"},
-	        new String[] {"uint",    "RangeIndex"},
+	        new String[] {"uint",    "RangeIndex"},//used
 	        new String[] {"float",   "Speed"},
 	        new String[] {"uint",    "ModalNextSpell"},
 	        new String[] {"uint",    "StackAmount"},
@@ -181,9 +188,9 @@ namespace SpellWork
 	        new String[] {"uint",    "EffectImplicitTargetB_1"},
 	        new String[] {"uint",    "EffectImplicitTargetB_2"},
 	        new String[] {"uint",    "EffectImplicitTargetB_3"},
-	        new String[] {"uint",    "EffectRadiusIndex_1"},
-	        new String[] {"uint",    "EffectRadiusIndex_2"},
-	        new String[] {"uint",    "EffectRadiusIndex_3"},
+	        new String[] {"uint",    "EffectRadiusIndex_1"}, //used
+	        new String[] {"uint",    "EffectRadiusIndex_2"}, //used
+	        new String[] {"uint",    "EffectRadiusIndex_3"}, //used
 	        new String[] {"uint",    "EffectApplyAuraName_1"},
 	        new String[] {"uint",    "EffectApplyAuraName_2"},
 	        new String[] {"uint",    "EffectApplyAuraName_3"},
@@ -225,14 +232,15 @@ namespace SpellWork
 	        new String[] {"uint",    "SpellIconID"},
 	        new String[] {"uint",    "ActiveIconID"},
 	        new String[] {"uint",    "SpellPriority"},
+            #region String (text info)
             new String[] {"string",  "SpellName_enUS"},
-	        new String[] {"string",  "SpellName_1"},
-	        new String[] {"string",  "SpellName_2"},
-	        new String[] {"string",  "SpellName_3"},
-	        new String[] {"string",  "SpellName_4"},
-	        new String[] {"string",  "SpellName_5"},
-	        new String[] {"string",  "SpellName_6"},
-	        new String[] {"string",  "SpellName_7"},
+	        new String[] {"string",  "SpellName_koKR"},
+	        new String[] {"string",  "SpellName_frFR"},
+	        new String[] {"string",  "SpellName_deDE"},
+	        new String[] {"string",  "SpellName_zhCN"},
+	        new String[] {"string",  "SpellName_zhTW"},
+	        new String[] {"string",  "SpellName_esES"},
+	        new String[] {"string",  "SpellName_esMX"},
 	        new String[] {"string",  "SpellName_ruRU"},
 	        new String[] {"string",  "SpellName_9"},
 	        new String[] {"string",  "SpellName_10"},
@@ -243,13 +251,13 @@ namespace SpellWork
 	        new String[] {"string",  "SpellName_15"},
 	        new String[] {"uint",    "SpellNameFlags"},
             new String[] {"string",  "Rank_enUS"},
-	        new String[] {"string",  "Rank_1"},
-	        new String[] {"string",  "Rank_2"},
-	        new String[] {"string",  "Rank_3"},
-	        new String[] {"string",  "Rank_4"},
-	        new String[] {"string",  "Rank_5"},
-	        new String[] {"string",  "Rank_6"},
-	        new String[] {"string",  "Rank_7"},
+	        new String[] {"string",  "Rank_koKR"},
+	        new String[] {"string",  "Rank_frFR"},
+	        new String[] {"string",  "Rank_deDE"},
+	        new String[] {"string",  "Rank_zhCN"},
+	        new String[] {"string",  "Rank_zhTW"},
+	        new String[] {"string",  "Rank_esES"},
+	        new String[] {"string",  "Rank_esMX"},
 	        new String[] {"string",  "Rank_ruRU"},
 	        new String[] {"string",  "Rank_9"},
 	        new String[] {"string",  "Rank_10"},
@@ -260,13 +268,13 @@ namespace SpellWork
 	        new String[] {"string",  "Rank_15"},
 	        new String[] {"uint",    "RankFlags"},
             new String[] {"string",  "Description_enUS"},
-	        new String[] {"string",  "Description_1"},
-	        new String[] {"string",  "Description_2"},
-	        new String[] {"string",  "Description_3"},
-	        new String[] {"string",  "Description_4"},
-	        new String[] {"string",  "Description_5"},
-	        new String[] {"string",  "Description_6"},
-	        new String[] {"string",  "Description_7"},
+	        new String[] {"string",  "Description_koKR"},
+	        new String[] {"string",  "Description_frFR"},
+	        new String[] {"string",  "Description_deDE"},
+	        new String[] {"string",  "Description_zhCN"},
+	        new String[] {"string",  "Description_zhTW"},
+	        new String[] {"string",  "Description_esES"},
+	        new String[] {"string",  "Description_esMX"},
 	        new String[] {"string",  "Description_ruRU"},
 	        new String[] {"string",  "Description_9"},
 	        new String[] {"string",  "Description_10"},
@@ -277,13 +285,13 @@ namespace SpellWork
 	        new String[] {"string",  "Description_15"},
 	        new String[] {"uint",    "DescriptionFlags"},
             new String[] {"string",  "ToolTip_enUS"},
-	        new String[] {"string",  "ToolTip_1"},
-	        new String[] {"string",  "ToolTip_2"},
-	        new String[] {"string",  "ToolTip_3"},
-	        new String[] {"string",  "ToolTip_4"},
-	        new String[] {"string",  "ToolTip_5"},
-	        new String[] {"string",  "ToolTip_6"},
-	        new String[] {"string",  "ToolTip_7"},
+	        new String[] {"string",  "ToolTip_koKR"},
+	        new String[] {"string",  "ToolTip_frFR"},
+	        new String[] {"string",  "ToolTip_deDE"},
+	        new String[] {"string",  "ToolTip_zhCN"},
+	        new String[] {"string",  "ToolTip_zhTW"},
+	        new String[] {"string",  "ToolTip_esES"},
+	        new String[] {"string",  "ToolTip_esMX"},
 	        new String[] {"string",  "ToolTip_ruRU"},
 	        new String[] {"string",  "ToolTip_9"},
 	        new String[] {"string",  "ToolTip_10"},
@@ -293,15 +301,16 @@ namespace SpellWork
 	        new String[] {"string",  "ToolTip_14"},
 	        new String[] {"string",  "ToolTip_15"},
 	        new String[] {"uint",    "ToolTipFlags"},
+            #endregion
 	        new String[] {"uint",    "ManaCostPercentage"},
 	        new String[] {"uint",    "StartRecoveryCategory"},
 	        new String[] {"uint",    "StartRecoveryTime"},
 	        new String[] {"uint",    "MaxTargetLevel"},
-	        new String[] {"uint",    "SpellFamilyName"},
+	        new String[] {"uint",    "SpellFamilyName"}, // filter
 	        new String[] {"ulong",   "SpellFamilyFlags"},
 	        new String[] {"uint",    "SpellFamilyFlags_2"},
 	        new String[] {"uint",    "MaxAffectedTargets"},
-	        new String[] {"uint",    "DmgClass"},
+	        new String[] {"uint",    "DmgClass"}, //used
 	        new String[] {"uint",    "PreventionType"},
 	        new String[] {"uint",    "StanceBarOrder"},
 	        new String[] {"float",   "DmgMultiplier_1"},
@@ -377,9 +386,10 @@ namespace SpellWork
             new String[] {"float",   "minRangeFriendly"},
             new String[] {"float",   "maxRange"},
             new String[] {"float",   "maxRangeFriendly"},
-            /* is not used 
-            new String[] {"int",     ""},
-            new String[] {"int",     ""},
+              
+            new String[] {"int",     "unk"},
+            new String[] {"string",  "name"},
+            /* is not used
             new String[] {"int",     ""},
             new String[] {"int",     ""},
             new String[] {"int",     ""},

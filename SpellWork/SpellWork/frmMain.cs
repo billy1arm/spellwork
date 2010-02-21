@@ -115,10 +115,10 @@ namespace SpellWork
             if (query.Count() == 0) return;
             // in temp datatable from speed
             tempTable = query.CopyToDataTable<DataRow>();
-            foreach (var elemrnt in tempTable.Select())
+            foreach (var element in tempTable.Select())
             {
                 _lvSpellList.Items.Add(new ListViewItem(new String[] { 
-                "" + elemrnt["ID"], "" + elemrnt["SpellName_"+Spell.Locales] + " (" + elemrnt["Rank_"+Spell.Locales] + ")" }));
+                "" + element["ID"], "" + element["SpellName_"+Spell.Locales] + " (" + element["Rank_"+Spell.Locales] + ")" }));
             }
         }
 
