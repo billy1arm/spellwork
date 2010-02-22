@@ -37,7 +37,7 @@
         SPELLFAMILY_PET         = 17
     };
     /// <summary>
-    /// Класификация спеллов
+    /// 
     /// </summary>
     enum SpellSpecific
     {
@@ -66,7 +66,7 @@
         SPELL_FOOD_AND_DRINK    = 22,
     };
     /// <summary>
-    /// Эфекты спелов
+    /// 
     /// </summary>
     enum SpellEffects
     {
@@ -236,7 +236,7 @@
         TOTAL_SPELL_EFFECTS                     = 163
     };
     /// <summary>
-    /// Типы Ауры
+    /// 
     /// </summary>
     enum AuraType
     {
@@ -680,9 +680,7 @@
         PROC_FLAG_TAKEN_OFFHAND_HIT                 = 0x00400000,    // 22 Taken off-hand melee attacks(not used)
         PROC_FLAG_SUCCESSFUL_OFFHAND_HIT            = 0x00800000     // 23 Successful off-hand melee attacks
     };
-    /// <summary>
-    /// 
-    /// </summary>
+
     enum ProcFlagsEx
     {
         PROC_EX_NONE                    = 0x0000000,                 // If none can tigger on Hit/Crit only (passive spells MUST defined by SpellFamily flag)
@@ -788,5 +786,114 @@
         MECHANIC_IMMUNE_SHIELD      = 29,  // Divine (Blessing) Shield/Protection and Ice Block
         MECHANIC_SAPPED             = 30,
         MECHANIC_ENRAGED            = 31
+    };
+
+    enum SpellMissInfo
+    {
+        SPELL_MISS_NONE     = 0,
+        SPELL_MISS_MISS     = 1,
+        SPELL_MISS_RESIST   = 2,
+        SPELL_MISS_DODGE    = 3,
+        SPELL_MISS_PARRY    = 4,
+        SPELL_MISS_BLOCK    = 5,
+        SPELL_MISS_EVADE    = 6,
+        SPELL_MISS_IMMUNE   = 7,
+        SPELL_MISS_IMMUNE2  = 8,
+        SPELL_MISS_DEFLECT  = 9,
+        SPELL_MISS_ABSORB   = 10,
+        SPELL_MISS_REFLECT  = 11
+    };
+
+    enum SpellHitType
+    {
+        SPELL_HIT_TYPE_UNK1 = 0x00001,
+        SPELL_HIT_TYPE_CRIT = 0x00002,
+        SPELL_HIT_TYPE_UNK3 = 0x00004,
+        SPELL_HIT_TYPE_UNK4 = 0x00008,
+        SPELL_HIT_TYPE_UNK5 = 0x00010,                          // replace caster?
+        SPELL_HIT_TYPE_UNK6 = 0x00020
+    };
+
+    enum SpellDmgClass
+    {
+        SPELL_DAMAGE_CLASS_NONE   = 0,
+        SPELL_DAMAGE_CLASS_MAGIC  = 1,
+        SPELL_DAMAGE_CLASS_MELEE  = 2,
+        SPELL_DAMAGE_CLASS_RANGED = 3
+    };
+
+    enum SpellPreventionType
+    {
+        SPELL_PREVENTION_TYPE_NONE    = 0,
+        SPELL_PREVENTION_TYPE_SILENCE = 1,
+        SPELL_PREVENTION_TYPE_PACIFY  = 2
+    };
+
+    enum ShapeshiftForm : byte
+    {
+        FORM_NONE               = 0x00,
+        FORM_CAT                = 0x01,
+        FORM_TREE               = 0x02,
+        FORM_TRAVEL             = 0x03,
+        FORM_AQUA               = 0x04,
+        FORM_BEAR               = 0x05,
+        FORM_AMBIENT            = 0x06,
+        FORM_GHOUL              = 0x07,
+        FORM_DIREBEAR           = 0x08,
+        FORM_STEVES_GHOUL       = 0x09,
+        FORM_THARONJA_SKELETON  = 0x0A,
+        FORM_TEST_OF_STRENGTH   = 0x0B,
+        FORM_BLB_PLAYER         = 0x0C,
+        FORM_SHADOW_DANCE       = 0x0D,
+        FORM_CREATUREBEAR       = 0x0E,
+        FORM_CREATURECAT        = 0x0F,
+        FORM_GHOSTWOLF          = 0x10,
+        FORM_BATTLESTANCE       = 0x11,
+        FORM_DEFENSIVESTANCE    = 0x12,
+        FORM_BERSERKERSTANCE    = 0x13,
+        FORM_TEST               = 0x14,
+        FORM_ZOMBIE             = 0x15,
+        FORM_METAMORPHOSIS      = 0x16,
+        FORM_UNDEAD             = 0x19,
+        FORM_FRENZY             = 0x1A,
+        FORM_FLIGHT_EPIC        = 0x1B,
+        FORM_SHADOW             = 0x1C,
+        FORM_FLIGHT             = 0x1D,
+        FORM_STEALTH            = 0x1E,
+        FORM_MOONKIN            = 0x1F,
+        FORM_SPIRITOFREDEMPTION = 0x20,
+    };
+
+    enum SpellModOp
+    {
+        SPELLMOD_DAMAGE                 = 0,
+        SPELLMOD_DURATION               = 1,
+        SPELLMOD_THREAT                 = 2,
+        SPELLMOD_EFFECT1                = 3,
+        SPELLMOD_CHARGES                = 4,
+        SPELLMOD_RANGE                  = 5,
+        SPELLMOD_RADIUS                 = 6,
+        SPELLMOD_CRITICAL_CHANCE        = 7,
+        SPELLMOD_ALL_EFFECTS            = 8,
+        SPELLMOD_NOT_LOSE_CASTING_TIME  = 9,
+        SPELLMOD_CASTING_TIME           = 10,
+        SPELLMOD_COOLDOWN               = 11,
+        SPELLMOD_EFFECT2                = 12,
+        // spellmod 13 unused
+        SPELLMOD_COST                   = 14,
+        SPELLMOD_CRIT_DAMAGE_BONUS      = 15,
+        SPELLMOD_RESIST_MISS_CHANCE     = 16,
+        SPELLMOD_JUMP_TARGETS           = 17,
+        SPELLMOD_CHANCE_OF_SUCCESS      = 18,  // Only used with SPELL_AURA_ADD_FLAT_MODIFIER and affects proc spells
+        SPELLMOD_ACTIVATION_TIME        = 19,
+        SPELLMOD_EFFECT_PAST_FIRST      = 20,
+        SPELLMOD_CASTING_TIME_OLD       = 21,
+        SPELLMOD_DOT                    = 22,
+        SPELLMOD_EFFECT3                = 23,
+        SPELLMOD_SPELL_BONUS_DAMAGE     = 24,
+        // spellmod 25 unused
+        SPELLMOD_FREQUENCY_OF_SUCCESS   = 26,  // Only used with SPELL_AURA_ADD_PCT_MODIFIER and affects used on proc spells
+        SPELLMOD_MULTIPLE_VALUE         = 27,
+        SPELLMOD_RESIST_DISPEL_CHANCE   = 28
     };
 }

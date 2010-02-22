@@ -30,8 +30,8 @@ namespace SpellWork
 
     enum SpellFields2
     {
-        Stances,
         StancesNot,
+        Stances,
         Totem,
         SpellVisual,
         TotemCategory
@@ -43,8 +43,6 @@ namespace SpellWork
         Category,
         SpellIconID,
         ActiveIconID,
-        DmgClass,
-        PreventionType,
         SpellLevel,
         ManaCostPercentage,
         StartRecoveryCategory,
@@ -79,9 +77,6 @@ namespace SpellWork
         InterruptFlags,
         AuraInterruptFlags,
         ChannelInterruptFlags,
-        ProcFlags,
-        ProcChance,
-        ProcCharges,
         MaxLevel,
         BaseLevel
     };

@@ -17,11 +17,12 @@ namespace SpellWork
             {
                 var path = @"dbc\";
 
-                new DBCReader(path + "Spell.dbc",            ref SpellData,        SpellStructure);
-                new DBCReader(path + "SpellCastTimes.dbc",   ref SpellCastTime,    SpellCastTimeStructure);
-                new DBCReader(path + "SpellRadius.dbc",      ref SpellRadius,      SpellRadiusStructure);
-                new DBCReader(path + "SpellDuration.dbc",    ref SpellDuration,    DurationStructure);
-                new DBCReader(path + "SpellRange.dbc",       ref SpellRange,       SpellRangeStructure);
+                new DBCReader(path + "Spell.dbc", ref SpellData, SpellStructure);
+
+                new DBCReader(path + "SpellCastTimes.dbc", ref SpellCastTime, SpellCastTimeStructure);
+                new DBCReader(path + "SpellRadius.dbc", ref SpellRadius, SpellRadiusStructure);
+                new DBCReader(path + "SpellDuration.dbc", ref SpellDuration, DurationStructure);
+                new DBCReader(path + "SpellRange.dbc", ref SpellRange, SpellRangeStructure);
                 //new DBCReader(path + "SkillLineAbility.dbc", ref SkillLineAbility, SkillLineAbilityStructure);
                 //new DBCReader(path + "SkillLine.dbc",        ref SkillLine,        SkillLineStructure);
 
