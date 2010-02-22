@@ -15,7 +15,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public enum SpellFamilyNames 
+    enum SpellFamilyNames 
     {
         SPELLFAMILY_GENERIC     = 0,
         SPELLFAMILY_UNK1        = 1, // events, holidays
@@ -39,7 +39,7 @@
     /// <summary>
     /// Класификация спеллов
     /// </summary>
-    public enum SpellSpecific
+    enum SpellSpecific
     {
         SPELL_NORMAL            = 0,
         SPELL_SEAL              = 1,
@@ -68,7 +68,7 @@
     /// <summary>
     /// Эфекты спелов
     /// </summary>
-    public enum SpellEffects
+    enum SpellEffects
     {
         NO_SPELL_EFFECT                         = 0,
         SPELL_EFFECT_INSTAKILL                  = 1,
@@ -238,7 +238,7 @@
     /// <summary>
     /// Типы Ауры
     /// </summary>
-    public enum AuraType
+    enum AuraType
     {
         SPELL_AURA_NONE                                     = 0,
         SPELL_AURA_BIND_SIGHT                               = 1,
@@ -562,7 +562,7 @@
     /// <summary>
     /// Target
     /// </summary>
-    public enum Targets
+    enum Targets
     {
         NO_TARGET                               = 0,
         TARGET_SELF                             = 1,
@@ -640,7 +640,7 @@
     ///<summary>
     ///Spell proc event related declarations (accessed using SpellMgr functions)
     ///</summary>
-    public enum ProcFlags
+    enum ProcFlags
     {
         PROC_FLAG_NONE                              = 0x00000000,
 
@@ -683,7 +683,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public enum ProcFlagsEx
+    enum ProcFlagsEx
     {
         PROC_EX_NONE                    = 0x0000000,                 // If none can tigger on Hit/Crit only (passive spells MUST defined by SpellFamily flag)
         
@@ -715,7 +715,7 @@
         PROC_EX_EX_ONE_TIME_TRIGGER     = 0x0020000                  // If set trigger always but only one time (not used)
     };
 
-    public enum SpellSchools
+    enum SpellSchools
     {
         SPELL_SCHOOL_NORMAL     = 0,
         SPELL_SCHOOL_HOLY       = 1,
@@ -726,7 +726,7 @@
         SPELL_SCHOOL_ARCANE     = 6
     };
 
-    public enum SpellSchoolMask
+    enum SpellSchoolMask
     {
         SPELL_SCHOOL_MASK_NONE      = 0x00,                       // not exist
         SPELL_SCHOOL_MASK_NORMAL    = (1 << SpellSchools.SPELL_SCHOOL_NORMAL), // PHYSICAL (Armor)
@@ -754,7 +754,7 @@
                                      | SPELL_SCHOOL_MASK_MAGIC)
     };
 
-    public enum Mechanics
+    enum Mechanics
     {
         MECHANIC_NONE               = 0,
         MECHANIC_CHARM              = 1,
@@ -788,37 +788,5 @@
         MECHANIC_IMMUNE_SHIELD      = 29,  // Divine (Blessing) Shield/Protection and Ice Block
         MECHANIC_SAPPED             = 30,
         MECHANIC_ENRAGED            = 31
-    };
-
-    public enum SpellFields3
-    {
-        EffectDieSides,
-        EffectBaseDice,
-        EffectDicePerLevel,
-        EffectRealPointsPerLevel,
-        EffectBasePoints,
-        EffectMechanic,
-        EffectApplyAuraName,
-        EffectAmplitude,
-        EffectMultipleValue,
-        EffectChainTargets,
-        EffectItemType,
-        EffectMiscValueA,
-        EffectMiscValueB,
-        EffectTriggerSpell,
-        EffectPointsPerComboPoint,
-        EffectSpellClassMaskA,
-        EffectSpellClassMaskB,
-        EffectSpellClassMaskC,
-        DmgMultiplier
-    };
-
-    public enum SpellFields2
-    {
-        Stances,
-        StancesNot,
-        Totem,
-        SpellVisual,
-        TotemCategory
     };
 }

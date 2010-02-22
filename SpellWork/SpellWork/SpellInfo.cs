@@ -13,26 +13,27 @@ namespace SpellWork
             //_rtSpellInfo.SelectionColor = Color.Blue;
             _rtSpellInfo.AppendText(ViewTextInfo(spellInfo));
 
-            _rtSpellInfo.AppendText(ViewSpellBloc1(spellInfo));
-
-            _rtSpellInfo.AppendText(String.Format("\r\nAttributes 0x{0:X8}, Ex 0x{1:X8}, Ex2 0x{2:X8}, Ex3 0x{3:X8}, Ex4 0x{4:X8}, Ex5 0x{5:X8}, Ex6 0x{6:X8}, ExG 0x{7:X8}",
-                uint.Parse((string)spellInfo["Attributes"]), uint.Parse((string)spellInfo["AttributesEx"]), uint.Parse((string)spellInfo["AttributesEx2"]), uint.Parse((string)spellInfo["AttributesEx3"]),
-                uint.Parse((string)spellInfo["AttributesEx4"]), uint.Parse((string)spellInfo["AttributesEx5"]), uint.Parse((string)spellInfo["AttributesEx6"]), uint.Parse((string)spellInfo["AttributesExG"])));
+            _rtSpellInfo.AppendText(ViewAttribute(spellInfo));
 
             _rtSpellInfo.AppendText(ViewFlags(spellInfo));
+
+            _rtSpellInfo.AppendText(ViewSpellFields(spellInfo, typeof(SpellFieldBloc1)));
+
+            _rtSpellInfo.AppendText(ViewSpellFields(spellInfo, typeof(SpellFieldBloc2)));
+
+            _rtSpellInfo.AppendText(ViewSpellFields(spellInfo, typeof(SpellFieldBloc3)));
 
             _rtSpellInfo.AppendText(ViewInfoFromOtherTable(spellInfo));
 
             _rtSpellInfo.AppendText(ViewReagent(spellInfo));
 
-            _rtSpellInfo.AppendText(ViewOtherSpellInfo(spellInfo, typeof(SpellFields2), 2));
+            _rtSpellInfo.AppendText(ViewSpellFields(spellInfo, typeof(SpellFields2), 2));
 
-            _rtSpellInfo.AppendText(ViewOtherSpellInfo(spellInfo, typeof(SpellFields3), 3));
+            _rtSpellInfo.AppendText(ViewSpellFields(spellInfo, typeof(SpellFields3), 3));
 
             _rtSpellInfo.AppendText(ViewMask(spellInfo));
 
             _rtSpellInfo.AppendText(ViewSpellItemInfo(spellInfo));
-            //todo: more info
         }
 
         static String ViewSpellItemInfo(DataRow spellInfo)
@@ -47,28 +48,6 @@ namespace SpellWork
             info += itemInventoryTypeMask == "0" ? "" : " EquippedItemInventoryTypeMask = " + itemInventoryTypeMask;
 
             return (info == "") ? "" : "\r\n" + info + "\r\n------------------------------";
-        }
-
-        static String ViewSpellBloc1(DataRow spellInfo)
-        {
-            var info = "";
-            var dispel          = (string)spellInfo["Dispel"];
-            var category        = (string)spellInfo["Category"];
-            var spellIcon       = (string)spellInfo["SpellIconID"];
-            var activeIcon      = (string)spellInfo["ActiveIconID"];
-            var dmgClass        = (string)spellInfo["DmgClass"];
-            var previntionType  = (string)spellInfo["PreventionType"];
-            var spellLevel      = (string)spellInfo["SpellLevel"];
-
-            info += dispel == "0" ? "" : "\r\nDispel = " + dispel;
-            info += category == "0" ? "" : " Category = " + category;
-            info += spellIcon == "0" ? "" : "\r\nSpellIconID = " + spellIcon;
-            info += activeIcon == "0" ? "" : " ActiveIconID = " + activeIcon;
-            info += dmgClass == "0" ? "" : "\r\nDmgClass = " + dmgClass;
-            info += previntionType == "0" ? "" : " PreventionType = " + previntionType;
-            info += spellLevel == "0" ? "" : " SpellLevel = " + spellLevel;
-
-            return (info == "") ? "" : info + "\r\n------------------------------";
         }
 
         static String ViewMask(DataRow spellInfo)
@@ -168,7 +147,32 @@ namespace SpellWork
             return (info == "") ? "" : info + "\r\n------------------------------";
         }
 
-        static String ViewOtherSpellInfo(DataRow spellInfo, Type fields, int count)
+        static String ViewAttribute(DataRow spellInfo)
+        {
+            return String.Format("\r\nAttributes 0x{0:X8},  Ex 0x{1:X8}, Ex2 0x{2:X8}, Ex3 0x{3:X8},"
+                                         + " Ex4 0x{4:X8}, Ex5 0x{5:X8}, Ex6 0x{6:X8}, ExG 0x{7:X8}",
+            uint.Parse((string)spellInfo["Attributes"]),
+            uint.Parse((string)spellInfo["AttributesEx"]),
+            uint.Parse((string)spellInfo["AttributesEx2"]),
+            uint.Parse((string)spellInfo["AttributesEx3"]),
+            uint.Parse((string)spellInfo["AttributesEx4"]),
+            uint.Parse((string)spellInfo["AttributesEx5"]),
+            uint.Parse((string)spellInfo["AttributesEx6"]),
+            uint.Parse((string)spellInfo["AttributesExG"]));
+        }
+
+        static String ViewSpellFields(DataRow spellInfo, Type fields)
+        {
+            var info = "";
+            foreach (var field in Enum.GetNames(fields))
+            {
+                var val = (string)spellInfo[field];
+                info += val == "0" ? "" : String.Format("\r\n{0} = {1}", field, val);
+            }
+            return (info == "") ? "" : info + "\r\n------------------------------";
+        }
+
+        static String ViewSpellFields(DataRow spellInfo, Type fields, int count)
         {
             var info = "";
 

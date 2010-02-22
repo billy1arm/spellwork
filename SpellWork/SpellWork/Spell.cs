@@ -6,9 +6,6 @@ using System.Collections.Generic;
 
 namespace SpellWork
 {
-    /// <summary>
-    /// Места для хранения данных с dbc
-    /// </summary>
     public class Spell
     {
         public static LocalesDBC Locales {get; set;}
@@ -57,47 +54,24 @@ namespace SpellWork
         }
 
         #region SpellDataTable
-        /// <summary>
-        /// 
-        /// </summary>
-        public static DataTable SpellData = new DataTable();
-        /// <summary>
-        /// 
-        /// </summary>
-        public static DataTable SpellCastTime = new DataTable();
-        /// <summary>
-        /// 
-        /// </summary>
-        public static DataTable SpellRadius = new DataTable();
-        /// <summary>
-        /// 
-        /// </summary>
-        public static DataTable SpellRange = new DataTable();
-        /// <summary>
-        /// 
-        /// </summary>
-        public static DataTable SpellDuration = new DataTable();
-        /// <summary>
-        /// 
-        /// </summary>
+
+        public static DataTable SpellData        = new DataTable();
+        public static DataTable SpellCastTime    = new DataTable();
+        public static DataTable SpellRadius      = new DataTable();
+        public static DataTable SpellRange       = new DataTable();
+        public static DataTable SpellDuration    = new DataTable();
         public static DataTable SkillLineAbility = new DataTable();
-        /// <summary>
-        /// 
-        /// </summary>
-        public static DataTable SkillLine = new DataTable();
+        public static DataTable SkillLine        = new DataTable();
 
         #endregion
 
         #region Spell structure
-        /// <summary>
-        /// 
-        /// </summary>
         public static readonly String[][] SpellStructure = new String[][]
         {
 	        new String[] {"uint",    "ID"},        //used
 	        new String[] {"uint",    "Category"},  //used
 	        new String[] {"uint",    "Dispel"},    //used
-	        new String[] {"uint",    "Mechanics"}, //used
+	        new String[] {"uint",    "Mechanics"}, //????
 	        new String[] {"uint",    "Attributes"},   //used
 	        new String[] {"uint",    "AttributesEx"}, //used
 	        new String[] {"uint",    "AttributesEx2"},//used
@@ -144,6 +118,7 @@ namespace SpellWork
 	        new String[] {"float",   "Speed"},
 	        new String[] {"uint",    "ModalNextSpell"},
 	        new String[] {"uint",    "StackAmount"},
+            #region Used
 	        new String[] {"uint",    "Totem_1"},   //used
 	        new String[] {"uint",    "Totem_2"},   //used
 	        new String[] {"int",     "Reagent_1"}, //used
@@ -236,6 +211,7 @@ namespace SpellWork
 	        new String[] {"uint",    "SpellIconID"}, //used
 	        new String[] {"uint",    "ActiveIconID"}, //used
 	        new String[] {"uint",    "SpellPriority"}, //used
+            #endregion
             #region String (text info)
             new String[] {"string",  "SpellName_enUS"},
 	        new String[] {"string",  "SpellName_koKR"},
@@ -311,8 +287,8 @@ namespace SpellWork
 	        new String[] {"uint",    "StartRecoveryTime"},
 	        new String[] {"uint",    "MaxTargetLevel"},
 	        new String[] {"uint",    "SpellFamilyName"}, // filter
-	        new String[] {"ulong",   "SpellFamilyFlagsHight"},
-	        new String[] {"uint",    "SpellFamilyFlagsLow"},
+	        new String[] {"ulong",   "SpellFamilyFlagsHight"}, //used
+	        new String[] {"uint",    "SpellFamilyFlagsLow"}, //used
 	        new String[] {"uint",    "MaxAffectedTargets"},
 	        new String[] {"uint",    "DmgClass"}, //used
 	        new String[] {"uint",    "PreventionType"},
@@ -338,9 +314,7 @@ namespace SpellWork
         #endregion
 
         #region SpellCastTime structure
-        /// <summary>
-        /// 
-        /// </summary>
+
         public static readonly String[][] SpellCastTimeStructure = new String[][]
         {
             new String[] {"uint",    "ID"},
@@ -352,9 +326,7 @@ namespace SpellWork
         #endregion
 
         #region SpellRadius structure
-        /// <summary>
-        /// 
-        /// </summary>
+
         public static readonly String[][] SpellRadiusStructure = new String[][]
         {
             new String[] {"uint",    "ID"},
@@ -366,9 +338,7 @@ namespace SpellWork
         #endregion
 
         #region SpellDuration structure
-        /// <summary>
-        /// 
-        /// </summary>
+
         public static readonly String[][] DurationStructure = new String[][]
         {
             new String[] {"uint",    "ID"},
@@ -380,9 +350,7 @@ namespace SpellWork
         #endregion
 
         #region SpellRange structure
-        /// <summary>
-        /// 
-        /// </summary>
+ 
         public static readonly String[][] SpellRangeStructure = new String[][]
         {
             new String[] {"uint",    "ID"},
@@ -432,9 +400,7 @@ namespace SpellWork
         #endregion
 
         #region SkillLine structure
-        /// <summary>
-        /// 
-        /// </summary>
+
         public static readonly String[][] SkillLineStructure = new String[][]
         {
             new String[] {"uint",     "ID"},
@@ -478,9 +444,7 @@ namespace SpellWork
         #endregion
 
         #region SkillLineAbility structure
-        /// <summary>
-        /// 
-        /// </summary>
+
         public static readonly String[][] SkillLineAbilityStructure = new String[][]
         {
             new String[] {"uint",     "ID"},
