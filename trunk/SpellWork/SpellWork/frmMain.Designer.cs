@@ -39,6 +39,7 @@
             this._lvSpellList = new System.Windows.Forms.ListView();
             this.chSpellID = new System.Windows.Forms.ColumnHeader();
             this.chSpellName = new System.Windows.Forms.ColumnHeader();
+            this._cbTarget2 = new System.Windows.Forms.ComboBox();
             this._cbTarget1 = new System.Windows.Forms.ComboBox();
             this._cbSpellEffect = new System.Windows.Forms.ComboBox();
             this._cbSpellAura = new System.Windows.Forms.ComboBox();
@@ -72,7 +73,6 @@
             this._bProc = new System.Windows.Forms.Button();
             this._bSpellInfo = new System.Windows.Forms.Button();
             this.ItemTemplate = new Microsoft.VisualBasic.PowerPacks.DataRepeaterItem();
-            this._cbTarget2 = new System.Windows.Forms.ComboBox();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -225,6 +225,15 @@
             // 
             this.chSpellName.Text = "Name";
             this.chSpellName.Width = 200;
+            // 
+            // _cbTarget2
+            // 
+            this._cbTarget2.FormattingEnabled = true;
+            this._cbTarget2.Location = new System.Drawing.Point(1, 125);
+            this._cbTarget2.Name = "_cbTarget2";
+            this._cbTarget2.Size = new System.Drawing.Size(273, 21);
+            this._cbTarget2.TabIndex = 5;
+            this._cbTarget2.SelectedIndexChanged += new System.EventHandler(this._cbSpellFamilyNames_SelectedIndexChanged);
             // 
             // _cbTarget1
             // 
@@ -589,15 +598,6 @@
             // ItemTemplate
             // 
             this.ItemTemplate.Size = new System.Drawing.Size(158, 239);
-            // 
-            // _cbTarget2
-            // 
-            this._cbTarget2.FormattingEnabled = true;
-            this._cbTarget2.Location = new System.Drawing.Point(1, 125);
-            this._cbTarget2.Name = "_cbTarget2";
-            this._cbTarget2.Size = new System.Drawing.Size(273, 21);
-            this._cbTarget2.TabIndex = 5;
-            this._cbTarget2.SelectedIndexChanged += new System.EventHandler(this._cbSpellFamilyNames_SelectedIndexChanged);
             // 
             // frmMain
             // 

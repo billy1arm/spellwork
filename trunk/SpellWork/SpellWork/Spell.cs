@@ -312,8 +312,9 @@ namespace SpellWork
 	        new String[] {"uint",    "StartRecoveryTime"},
 	        new String[] {"uint",    "MaxTargetLevel"},
 	        new String[] {"uint",    "SpellFamilyName"}, // filter
-	        new String[] {"ulong",   "SpellFamilyFlags"},
+	        new String[] {"uint",    "SpellFamilyFlags_1"},
 	        new String[] {"uint",    "SpellFamilyFlags_2"},
+            new String[] {"uint",    "SpellFamilyFlags_3"},
 	        new String[] {"uint",    "MaxAffectedTargets"},
 	        new String[] {"uint",    "DmgClass"}, //used
 	        new String[] {"uint",    "PreventionType"},

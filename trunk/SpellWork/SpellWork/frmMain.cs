@@ -68,7 +68,26 @@ namespace SpellWork
 
         private void _bSearch_Click(object sender, EventArgs e)
         {
-            //todo: inplement spell info in Spell Class
+            _lvSpellList.Items.Clear();
+
+            var query =
+                from spell in spellData.AsEnumerable()
+                where (spell.Field<string>("ID") == _tbSearch.Text)
+                  || (spell.Field<string>("SpellName_" + Spell.Locales).ToUpper().StartsWith(_tbSearch.Text.ToUpper()))
+                select spell;
+
+            if (query.Count() == 0) return;
+
+            tempTable = query.CopyToDataTable<DataRow>();
+           
+            foreach (var element in tempTable.Select())
+            {
+                var id = element["ID"].ToString();
+                var name = element["SpellName_" + Spell.Locales].ToString();
+                var rank = element["Rank_" + Spell.Locales].ToString() == "" ? "" : " (" + element["Rank_" + Spell.Locales] + ")";
+
+                _lvSpellList.Items.Add(new ListViewItem(new String[] { id, name + rank }));
+            }
         }
 
         private void _cbSpellFamilyNames_SelectedIndexChanged(object sender, EventArgs e)

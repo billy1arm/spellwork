@@ -34,8 +34,18 @@ namespace SpellWork
             _rtSpellInfo.AppendText(ViewOtherSpellInfo(spellInfo, typeof(SpellFields2), 2));
 
             _rtSpellInfo.AppendText(ViewOtherSpellInfo(spellInfo, typeof(SpellFields3), 3));
-            
+
+            _rtSpellInfo.AppendText(ViewMask(spellInfo));
             //todo: more info
+        }
+
+        static String ViewMask(DataRow spellInfo)
+        {
+            var spellFamilyFlags_1 = uint.Parse((string)spellInfo["SpellFamilyFlags_1"]);
+            var spellFamilyFlags_2 = uint.Parse((string)spellInfo["SpellFamilyFlags_2"]);
+            var spellFamilyFlags_3 = uint.Parse((string)spellInfo["SpellFamilyFlags_3"]);
+
+            return String.Format("\r\nSpellFamilyFlags: = 0x{0:X8} {1:X8} {2:X8}", spellFamilyFlags_3, spellFamilyFlags_2, spellFamilyFlags_1);
         }
 
         static String ViewTextInfo(DataRow spellInfo)
@@ -91,29 +101,29 @@ namespace SpellWork
 
         static String ViewFlags(DataRow spellInfo)
         {
-            int MAX = 4;
+            int COUNT = 4;
             var info = "";
             info = "\r\nSpellFamilyNames: " + (SpellFamilyNames)uint.Parse((string)spellInfo["SpellFamilyName"]);
 
-            for (int i = 1; i < MAX; i++)
+            for (int i = 1; i < COUNT; i++)
             {
                 var spellAura = (AuraType)uint.Parse((string)spellInfo["EffectApplyAuraName_" + i]);
                 info += (spellAura == AuraType.SPELL_AURA_NONE) ? "" : String.Format("\r\nEffectApplyAuraName_{0}: {1}", i, spellAura);
             }
 
-            for (int i = 1; i < MAX; i++)
+            for (int i = 1; i < COUNT; i++)
             {
                 var effekt = (SpellEffects)uint.Parse((string)spellInfo["Effect_" + i]);
                 info += (effekt == SpellEffects.NO_SPELL_EFFECT) ? "" : String.Format("\r\nEffect_{0}: {1}", i, effekt);
             }
 
-            for (int i = 1; i < MAX; i++)
+            for (int i = 1; i < COUNT; i++)
             {
                 var targetA = (SpellEffects)uint.Parse((string)spellInfo["EffectImplicitTargetA_" + i]);
                 info += (targetA == SpellEffects.NO_SPELL_EFFECT) ? "" : String.Format("\r\nEffectImplicitTargetA_{0}: {1}", i, targetA);
             }
 
-            for (int i = 1; i < MAX; i++)
+            for (int i = 1; i < COUNT; i++)
             {
                 var targetB = (SpellEffects)uint.Parse((string)spellInfo["EffectImplicitTargetB_" + i]);
                 info += (targetB == SpellEffects.NO_SPELL_EFFECT) ? "" : String.Format("\r\nEffectImplicitTargetB_{0}: {1}", i, targetB);
