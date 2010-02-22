@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using SpellWork.DbcReader;
 
 namespace SpellWork
 {
@@ -73,7 +72,7 @@ namespace SpellWork
             var query =
                 from spell in spellData.AsEnumerable()
                 where (spell.Field<string>("ID") == _tbSearch.Text)
-                  || (spell.Field<string>("SpellName_" + Spell.Locales).ToUpper().StartsWith(_tbSearch.Text.ToUpper()))
+                  || (spell.Field<string>("SpellName_" + Spell.Locales).StartsWith(_tbSearch.Text, StringComparison.CurrentCultureIgnoreCase))
                 select spell;
 
             if (query.Count() == 0) return;
@@ -196,6 +195,24 @@ namespace SpellWork
         private void _bProcFlag_Click(object sender, EventArgs e)
         {
             splitContainer6.Panel2Collapsed = !splitContainer6.Panel2Collapsed;
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UInt64[] mask = new UInt64[] { 0x00, 0x00, 0x00 };
+
+            for (int j = 0; j < 3; j++)
+            {
+                for (int i = 0; i < 32; i++)
+                {
+                    TreeNode tree = new TreeNode();
+                    tree.Text = String.Format("0x{0:X8} {1:X8} {2:X8}", mask[2], mask[1], mask[0]);
+                    tree.Nodes.Add(new TreeNode("testedt"));
+
+                    _tvFamilyMask.Nodes.Add(tree);
+                    mask[j] *= 2;
+                }
+            }
         }
 
     }

@@ -13,13 +13,7 @@ namespace SpellWork
             //_rtSpellInfo.SelectionColor = Color.Blue;
             _rtSpellInfo.AppendText(ViewTextInfo(spellInfo));
 
-            _rtSpellInfo.AppendText(String.Format("\r\nCategory = {0}, SpellIconID = {1}, ActiveIconID = {2}, SpellVisual_1 = {3}, SpellVisual_2 = {4}",
-                spellInfo["Category"], spellInfo["SpellIconID"], spellInfo["ActiveIconID"], spellInfo["SpellVisual_1"], spellInfo["SpellVisual_2"]));
-
-            _rtSpellInfo.AppendText(String.Format("\r\nSchool = {0}, DamageClass = {1}, PreventionType = {2}",
-                spellInfo["SchoolMask"], spellInfo["DmgClass"], spellInfo["PreventionType"]));
-
-            _rtSpellInfo.AppendText("\r\nSpellLevel = " + spellInfo["SpellLevel"]);
+            _rtSpellInfo.AppendText(ViewSpellBloc1(spellInfo));
 
             _rtSpellInfo.AppendText(String.Format("\r\nAttributes 0x{0:X8}, Ex 0x{1:X8}, Ex2 0x{2:X8}, Ex3 0x{3:X8}, Ex4 0x{4:X8}, Ex5 0x{5:X8}, Ex6 0x{6:X8}, ExG 0x{7:X8}",
                 uint.Parse((string)spellInfo["Attributes"]), uint.Parse((string)spellInfo["AttributesEx"]), uint.Parse((string)spellInfo["AttributesEx2"]), uint.Parse((string)spellInfo["AttributesEx3"]),
@@ -36,25 +30,62 @@ namespace SpellWork
             _rtSpellInfo.AppendText(ViewOtherSpellInfo(spellInfo, typeof(SpellFields3), 3));
 
             _rtSpellInfo.AppendText(ViewMask(spellInfo));
+
+            _rtSpellInfo.AppendText(ViewSpellItemInfo(spellInfo));
             //todo: more info
+        }
+
+        static String ViewSpellItemInfo(DataRow spellInfo)
+        {
+            var info = "";
+            var itemClass               = (string)spellInfo["EquippedItemClass"];
+            var itemSubClassMask        = (string)spellInfo["EquippedItemSubClassMask"];
+            var itemInventoryTypeMask   = (string)spellInfo["EquippedItemInventoryTypeMask"];
+
+            info += itemClass == "0" ? "" : " EquippedItemClass = " + itemClass;
+            info += itemSubClassMask == "0" ? "" : " EquippedItemSubClassMask = " + itemSubClassMask;
+            info += itemInventoryTypeMask == "0" ? "" : " EquippedItemInventoryTypeMask = " + itemInventoryTypeMask;
+
+            return (info == "") ? "" : "\r\n" + info + "\r\n------------------------------";
+        }
+
+        static String ViewSpellBloc1(DataRow spellInfo)
+        {
+            var info = "";
+            var dispel          = (string)spellInfo["Dispel"];
+            var category        = (string)spellInfo["Category"];
+            var spellIcon       = (string)spellInfo["SpellIconID"];
+            var activeIcon      = (string)spellInfo["ActiveIconID"];
+            var dmgClass        = (string)spellInfo["DmgClass"];
+            var previntionType  = (string)spellInfo["PreventionType"];
+            var spellLevel      = (string)spellInfo["SpellLevel"];
+
+            info += dispel == "0" ? "" : "\r\nDispel = " + dispel;
+            info += category == "0" ? "" : " Category = " + category;
+            info += spellIcon == "0" ? "" : "\r\nSpellIconID = " + spellIcon;
+            info += activeIcon == "0" ? "" : " ActiveIconID = " + activeIcon;
+            info += dmgClass == "0" ? "" : "\r\nDmgClass = " + dmgClass;
+            info += previntionType == "0" ? "" : " PreventionType = " + previntionType;
+            info += spellLevel == "0" ? "" : " SpellLevel = " + spellLevel;
+
+            return (info == "") ? "" : info + "\r\n------------------------------";
         }
 
         static String ViewMask(DataRow spellInfo)
         {
-            var spellFamilyFlags_1 = uint.Parse((string)spellInfo["SpellFamilyFlags_1"]);
-            var spellFamilyFlags_2 = uint.Parse((string)spellInfo["SpellFamilyFlags_2"]);
-            var spellFamilyFlags_3 = uint.Parse((string)spellInfo["SpellFamilyFlags_3"]);
+            var spellFamilyFlags_1 = ulong.Parse((string)spellInfo["SpellFamilyFlagsHight"]);
+            var spellFamilyFlags_2 = uint.Parse((string)spellInfo["SpellFamilyFlagsLow"]);
 
-            return String.Format("\r\nSpellFamilyFlags: = 0x{0:X8} {1:X8} {2:X8}", spellFamilyFlags_3, spellFamilyFlags_2, spellFamilyFlags_1);
+            return String.Format("\r\nSpellFamilyFlags: = 0x{0:X8} {1:X16}", spellFamilyFlags_2, spellFamilyFlags_1);
         }
 
         static String ViewTextInfo(DataRow spellInfo)
         {
-            var entry       = spellInfo["ID"];
-            var name        = spellInfo["SpellName_" + Spell.Locales];
-            var rank        = spellInfo["Rank_" + Spell.Locales].ToString();
-            var description = spellInfo["Description_" + Spell.Locales].ToString();
-            var tooltip     = spellInfo["ToolTip_" + Spell.Locales].ToString();
+            var entry       = (string)spellInfo["ID"];
+            var name        = (string)spellInfo["SpellName_" + Spell.Locales];
+            var rank        = (string)spellInfo["Rank_" + Spell.Locales].ToString();
+            var description = (string)spellInfo["Description_" + Spell.Locales].ToString();
+            var tooltip     = (string)spellInfo["ToolTip_" + Spell.Locales].ToString();
 
             var info = String.Format("ID - {0} {1} ", entry, name);
             info += rank == "" ? "" : " (" + rank + ")";
@@ -103,7 +134,12 @@ namespace SpellWork
         {
             int COUNT = 4;
             var info = "";
+
             info = "\r\nSpellFamilyNames: " + (SpellFamilyNames)uint.Parse((string)spellInfo["SpellFamilyName"]);
+            info = "\r\nSpellSchoolMask: "  + (SpellSchoolMask)uint.Parse((string)spellInfo["SpellSchoolMask"]);
+            
+            //var mechnics = (Mechanics)uint.Parse((string)spellInfo["Mechanics"]);
+            //info += (mechnics == Mechanics.MECHANIC_NONE) ? "" : String.Format("\r\nMechanics: {1}", mechnics);
 
             for (int i = 1; i < COUNT; i++)
             {

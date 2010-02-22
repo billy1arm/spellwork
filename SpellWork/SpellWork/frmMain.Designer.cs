@@ -410,16 +410,22 @@
             this.comboBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
             this.comboBox4.Location = new System.Drawing.Point(0, 2);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(193, 21);
             this.comboBox4.TabIndex = 1;
+            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // _tvFamilyMask
             // 
             this._tvFamilyMask.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this._tvFamilyMask.CheckBoxes = true;
             this._tvFamilyMask.Location = new System.Drawing.Point(1, 25);
             this._tvFamilyMask.Name = "_tvFamilyMask";
             this._tvFamilyMask.Size = new System.Drawing.Size(192, 215);
