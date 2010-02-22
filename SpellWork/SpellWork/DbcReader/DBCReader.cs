@@ -56,26 +56,26 @@ namespace SpellWork.DbcReader
 
                     switch (field[0])
                     {
-                        case "long": rows[field[1]] = rowsReader.ReadInt64();
-                            break;
-                        case "ulong": rows[field[1]] = rowsReader.ReadUInt64();
-                            break;
+                        //case "long": rows[field[1]] = rowsReader.ReadInt64();
+                        //    break;
+                        //case "ulong": rows[field[1]] = rowsReader.ReadUInt64();
+                        //    break;
                         case "int": rows[field[1]] = rowsReader.ReadInt32();
                             break;
                         case "uint": rows[field[1]] = rowsReader.ReadUInt32();
                             break;
-                        case "short": rows[field[1]] = rowsReader.ReadInt16();
-                            break;
-                        case "ushort": rows[field[1]] = rowsReader.ReadUInt16();
-                            break;
-                        case "sbyte": rows[field[1]] = rowsReader.ReadSByte();
-                            break;
-                        case "byte": rows[field[1]] = rowsReader.ReadByte();
-                            break;
+                        //case "short": rows[field[1]] = rowsReader.ReadInt16();
+                        //    break;
+                        //case "ushort": rows[field[1]] = rowsReader.ReadUInt16();
+                        //    break;
+                        //case "sbyte": rows[field[1]] = rowsReader.ReadSByte();
+                        //    break;
+                        //case "byte": rows[field[1]] = rowsReader.ReadByte();
+                        //    break;
                         case "float": rows[field[1]] = Regex.Replace(rowsReader.ReadSingle().ToString(), @",", @".");
                             break;
-                        case "double": rows[field[1]] = Regex.Replace(rowsReader.ReadDouble().ToString(), @",", @".");
-                            break;
+                        //case "double": rows[field[1]] = Regex.Replace(rowsReader.ReadDouble().ToString(), @",", @".");
+                        //    break;
                         case "string": rows[field[1]] = GetString(ref stringsReader, rowsReader.ReadInt32());
                             break;
                         default:
