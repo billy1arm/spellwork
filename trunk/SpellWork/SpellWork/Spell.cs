@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Data;
-using SpellWork.DbcReader;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -95,10 +94,10 @@ namespace SpellWork
         /// </summary>
         public static readonly String[][] SpellStructure = new String[][]
         {
-	        new String[] {"uint",    "ID"}, //used
-	        new String[] {"uint",    "Category"},
-	        new String[] {"uint",    "Dispel"},
-	        new String[] {"uint",    "Mechanic"},
+	        new String[] {"uint",    "ID"},        //used
+	        new String[] {"uint",    "Category"},  //used
+	        new String[] {"uint",    "Dispel"},    //used
+	        new String[] {"uint",    "Mechanics"}, //used
 	        new String[] {"uint",    "Attributes"},   //used
 	        new String[] {"uint",    "AttributesEx"}, //used
 	        new String[] {"uint",    "AttributesEx2"},//used
@@ -107,8 +106,8 @@ namespace SpellWork
 	        new String[] {"uint",    "AttributesEx5"},//used
 	        new String[] {"uint",    "AttributesEx6"},//used
 	        new String[] {"uint",    "AttributesExG"},//used
-	        new String[] {"uint",    "Stances_1"}, //used
-	        new String[] {"uint",    "Stances_2"}, //used
+	        new String[] {"uint",    "Stances_1"},    //used
+	        new String[] {"uint",    "Stances_2"},    //used
 	        new String[] {"uint",    "StancesNot_1"}, //used
 	        new String[] {"uint",    "StancesNot_2"}, //used
 	        new String[] {"uint",    "Targets"},        // ???
@@ -163,9 +162,9 @@ namespace SpellWork
 	        new String[] {"uint",    "ReagentCount_6"}, //used
 	        new String[] {"uint",    "ReagentCount_7"}, //used
 	        new String[] {"uint",    "ReagentCount_8"}, //used
-	        new String[] {"int",     "EquippedItemClass"},
-	        new String[] {"int",     "EquippedItemSubClassMask"},
-	        new String[] {"int",     "EquippedItemInventoryTypeMask"},
+	        new String[] {"int",     "EquippedItemClass"}, //used
+	        new String[] {"int",     "EquippedItemSubClassMask"}, //used
+	        new String[] {"int",     "EquippedItemInventoryTypeMask"}, //used
 	        new String[] {"uint",    "Effect_1"}, //used
 	        new String[] {"uint",    "Effect_2"}, //used
 	        new String[] {"uint",    "Effect_3"}, //used
@@ -234,9 +233,9 @@ namespace SpellWork
 	        new String[] {"uint",    "EffectSpellClassMaskC_3"}, //used
 	        new String[] {"uint",    "SpellVisual_1"}, //used
 	        new String[] {"uint",    "SpellVisual_2"}, //used
-	        new String[] {"uint",    "SpellIconID"},
-	        new String[] {"uint",    "ActiveIconID"},
-	        new String[] {"uint",    "SpellPriority"},
+	        new String[] {"uint",    "SpellIconID"}, //used
+	        new String[] {"uint",    "ActiveIconID"}, //used
+	        new String[] {"uint",    "SpellPriority"}, //used
             #region String (text info)
             new String[] {"string",  "SpellName_enUS"},
 	        new String[] {"string",  "SpellName_koKR"},
@@ -312,9 +311,8 @@ namespace SpellWork
 	        new String[] {"uint",    "StartRecoveryTime"},
 	        new String[] {"uint",    "MaxTargetLevel"},
 	        new String[] {"uint",    "SpellFamilyName"}, // filter
-	        new String[] {"uint",    "SpellFamilyFlags_1"},
-	        new String[] {"uint",    "SpellFamilyFlags_2"},
-            new String[] {"uint",    "SpellFamilyFlags_3"},
+	        new String[] {"ulong",   "SpellFamilyFlagsHight"},
+	        new String[] {"uint",    "SpellFamilyFlagsLow"},
 	        new String[] {"uint",    "MaxAffectedTargets"},
 	        new String[] {"uint",    "DmgClass"}, //used
 	        new String[] {"uint",    "PreventionType"},
@@ -328,7 +326,7 @@ namespace SpellWork
 	        new String[] {"uint",    "TotemCategory_1"}, //used
 	        new String[] {"uint",    "TotemCategory_2"}, //used
 	        new String[] {"uint",    "AreaGroupId"},
-	        new String[] {"uint",    "SchoolMask"},
+	        new String[] {"uint",    "SpellSchoolMask"}, //used
 	        new String[] {"uint",    "RuneCostID"},
 	        new String[] {"uint",    "SpellMissileID"},
 	        new String[] {"uint",    "PowerDisplayID"},

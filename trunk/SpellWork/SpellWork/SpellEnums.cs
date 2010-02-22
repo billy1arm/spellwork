@@ -715,6 +715,81 @@
         PROC_EX_EX_ONE_TIME_TRIGGER     = 0x0020000                  // If set trigger always but only one time (not used)
     };
 
+    public enum SpellSchools
+    {
+        SPELL_SCHOOL_NORMAL     = 0,
+        SPELL_SCHOOL_HOLY       = 1,
+        SPELL_SCHOOL_FIRE       = 2,
+        SPELL_SCHOOL_NATURE     = 3,
+        SPELL_SCHOOL_FROST      = 4,
+        SPELL_SCHOOL_SHADOW     = 5,
+        SPELL_SCHOOL_ARCANE     = 6
+    };
+
+    public enum SpellSchoolMask
+    {
+        SPELL_SCHOOL_MASK_NONE      = 0x00,                       // not exist
+        SPELL_SCHOOL_MASK_NORMAL    = (1 << SpellSchools.SPELL_SCHOOL_NORMAL), // PHYSICAL (Armor)
+        SPELL_SCHOOL_MASK_HOLY      = (1 << SpellSchools.SPELL_SCHOOL_HOLY),
+        SPELL_SCHOOL_MASK_FIRE      = (1 << SpellSchools.SPELL_SCHOOL_FIRE),
+        SPELL_SCHOOL_MASK_NATURE    = (1 << SpellSchools.SPELL_SCHOOL_NATURE),
+        SPELL_SCHOOL_MASK_FROST     = (1 << SpellSchools.SPELL_SCHOOL_FROST),
+        SPELL_SCHOOL_MASK_SHADOW    = (1 << SpellSchools.SPELL_SCHOOL_SHADOW),
+        SPELL_SCHOOL_MASK_ARCANE    = (1 << SpellSchools.SPELL_SCHOOL_ARCANE),
+
+        // unions
+
+        // 124, not include normal and holy damage
+        SPELL_SCHOOL_MASK_SPELL     = (SPELL_SCHOOL_MASK_FIRE 
+                                     | SPELL_SCHOOL_MASK_NATURE
+                                     | SPELL_SCHOOL_MASK_FROST 
+                                     | SPELL_SCHOOL_MASK_SHADOW
+                                     | SPELL_SCHOOL_MASK_ARCANE),
+        // 126
+        SPELL_SCHOOL_MASK_MAGIC     = (SPELL_SCHOOL_MASK_HOLY 
+                                     | SPELL_SCHOOL_MASK_SPELL),
+
+        // 127
+        SPELL_SCHOOL_MASK_ALL       = (SPELL_SCHOOL_MASK_NORMAL 
+                                     | SPELL_SCHOOL_MASK_MAGIC)
+    };
+
+    public enum Mechanics
+    {
+        MECHANIC_NONE               = 0,
+        MECHANIC_CHARM              = 1,
+        MECHANIC_DISORIENTED        = 2,
+        MECHANIC_DISARM             = 3,
+        MECHANIC_DISTRACT           = 4,
+        MECHANIC_FEAR               = 5,
+        MECHANIC_GRIP               = 6,
+        MECHANIC_ROOT               = 7,
+        MECHANIC_PACIFY             = 8,   //0 spells use this mechanic
+        MECHANIC_SILENCE            = 9,
+        MECHANIC_SLEEP              = 10,
+        MECHANIC_SNARE              = 11,
+        MECHANIC_STUN               = 12,
+        MECHANIC_FREEZE             = 13,
+        MECHANIC_KNOCKOUT           = 14,
+        MECHANIC_BLEED              = 15,
+        MECHANIC_BANDAGE            = 16,
+        MECHANIC_POLYMORPH          = 17,
+        MECHANIC_BANISH             = 18,
+        MECHANIC_SHIELD             = 19,
+        MECHANIC_SHACKLE            = 20,
+        MECHANIC_MOUNT              = 21,
+        MECHANIC_INFECTED           = 22,
+        MECHANIC_TURN               = 23,
+        MECHANIC_HORROR             = 24,
+        MECHANIC_INVULNERABILITY    = 25,
+        MECHANIC_INTERRUPT          = 26,
+        MECHANIC_DAZE               = 27,
+        MECHANIC_DISCOVERY          = 28,
+        MECHANIC_IMMUNE_SHIELD      = 29,  // Divine (Blessing) Shield/Protection and Ice Block
+        MECHANIC_SAPPED             = 30,
+        MECHANIC_ENRAGED            = 31
+    };
+
     public enum SpellFields3
     {
         EffectDieSides,
