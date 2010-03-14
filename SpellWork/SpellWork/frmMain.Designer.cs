@@ -49,10 +49,27 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
-            this._bProcFlag = new System.Windows.Forms.Button();
-            this._clbProcFlaf = new System.Windows.Forms.CheckedListBox();
+            this._clbProcFlags = new System.Windows.Forms.CheckedListBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this._cbProcFlag = new System.Windows.Forms.CheckBox();
+            this.checkBox18 = new System.Windows.Forms.CheckBox();
+            this.checkBox17 = new System.Windows.Forms.CheckBox();
+            this.checkBox16 = new System.Windows.Forms.CheckBox();
+            this.checkBox15 = new System.Windows.Forms.CheckBox();
+            this.checkBox14 = new System.Windows.Forms.CheckBox();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this._tvFamilyMask = new System.Windows.Forms.TreeView();
@@ -87,10 +104,7 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.splitContainer6.Panel1.SuspendLayout();
-            this.splitContainer6.Panel2.SuspendLayout();
-            this.splitContainer6.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
@@ -228,6 +242,8 @@
             // 
             // _cbTarget2
             // 
+            this._cbTarget2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._cbTarget2.FormattingEnabled = true;
             this._cbTarget2.Location = new System.Drawing.Point(1, 125);
             this._cbTarget2.Name = "_cbTarget2";
@@ -237,6 +253,8 @@
             // 
             // _cbTarget1
             // 
+            this._cbTarget1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._cbTarget1.FormattingEnabled = true;
             this._cbTarget1.Location = new System.Drawing.Point(1, 102);
             this._cbTarget1.Name = "_cbTarget1";
@@ -246,6 +264,8 @@
             // 
             // _cbSpellEffect
             // 
+            this._cbSpellEffect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._cbSpellEffect.FormattingEnabled = true;
             this._cbSpellEffect.Location = new System.Drawing.Point(1, 79);
             this._cbSpellEffect.Name = "_cbSpellEffect";
@@ -255,6 +275,8 @@
             // 
             // _cbSpellAura
             // 
+            this._cbSpellAura.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._cbSpellAura.FormattingEnabled = true;
             this._cbSpellAura.Location = new System.Drawing.Point(1, 56);
             this._cbSpellAura.Name = "_cbSpellAura";
@@ -264,6 +286,8 @@
             // 
             // _cbSpellFamilyNames
             // 
+            this._cbSpellFamilyNames.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._cbSpellFamilyNames.FormattingEnabled = true;
             this._cbSpellFamilyNames.Location = new System.Drawing.Point(1, 32);
             this._cbSpellFamilyNames.Name = "_cbSpellFamilyNames";
@@ -273,6 +297,7 @@
             // 
             // _bSearch
             // 
+            this._bSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._bSearch.Location = new System.Drawing.Point(227, 8);
             this._bSearch.Name = "_bSearch";
             this._bSearch.Size = new System.Drawing.Size(47, 23);
@@ -283,6 +308,8 @@
             // 
             // _tbSearch
             // 
+            this._tbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._tbSearch.Location = new System.Drawing.Point(1, 10);
             this._tbSearch.Name = "_tbSearch";
             this._tbSearch.Size = new System.Drawing.Size(220, 20);
@@ -320,6 +347,7 @@
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -327,63 +355,261 @@
             // splitContainer3.Panel1
             // 
             this.splitContainer3.Panel1.BackColor = System.Drawing.Color.White;
-            this.splitContainer3.Panel1.Controls.Add(this.panel1);
+            this.splitContainer3.Panel1.Controls.Add(this._clbProcFlags);
+            this.splitContainer3.Panel1.Controls.Add(this.groupBox4);
             // 
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
             this.splitContainer3.Size = new System.Drawing.Size(848, 338);
-            this.splitContainer3.SplitterDistance = 94;
+            this.splitContainer3.SplitterDistance = 160;
             this.splitContainer3.TabIndex = 0;
             // 
-            // panel1
+            // _clbProcFlags
             // 
-            this.panel1.Controls.Add(this.splitContainer6);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(848, 94);
-            this.panel1.TabIndex = 0;
+            this._clbProcFlags.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._clbProcFlags.ColumnWidth = 200;
+            this._clbProcFlags.FormattingEnabled = true;
+            this._clbProcFlags.Items.AddRange(new object[] {
+            "On being killed",
+            "Kill XP/HonorGieveer",
+            "On melee hit",
+            "On take melee hit",
+            "On melee spell hit",
+            "On take melee spell hit",
+            "On ranged hit",
+            "On take ranged hit",
+            "On ranged spell hit"});
+            this._clbProcFlags.Location = new System.Drawing.Point(1, 63);
+            this._clbProcFlags.MultiColumn = true;
+            this._clbProcFlags.Name = "_clbProcFlags";
+            this._clbProcFlags.Size = new System.Drawing.Size(844, 94);
+            this._clbProcFlags.TabIndex = 0;
             // 
-            // splitContainer6
+            // groupBox4
             // 
-            this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer6.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer6.Name = "splitContainer6";
-            this.splitContainer6.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this._cbProcFlag);
+            this.groupBox4.Controls.Add(this.checkBox18);
+            this.groupBox4.Controls.Add(this.checkBox17);
+            this.groupBox4.Controls.Add(this.checkBox16);
+            this.groupBox4.Controls.Add(this.checkBox15);
+            this.groupBox4.Controls.Add(this.checkBox14);
+            this.groupBox4.Controls.Add(this.checkBox13);
+            this.groupBox4.Controls.Add(this.checkBox12);
+            this.groupBox4.Controls.Add(this.checkBox11);
+            this.groupBox4.Controls.Add(this.checkBox10);
+            this.groupBox4.Controls.Add(this.checkBox9);
+            this.groupBox4.Controls.Add(this.checkBox8);
+            this.groupBox4.Controls.Add(this.checkBox7);
+            this.groupBox4.Controls.Add(this.checkBox6);
+            this.groupBox4.Controls.Add(this.checkBox5);
+            this.groupBox4.Controls.Add(this.checkBox4);
+            this.groupBox4.Controls.Add(this.checkBox3);
+            this.groupBox4.Controls.Add(this.checkBox2);
+            this.groupBox4.Controls.Add(this.checkBox1);
+            this.groupBox4.Location = new System.Drawing.Point(3, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(840, 52);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "ProcEx";
             // 
-            // splitContainer6.Panel1
+            // _cbProcFlag
             // 
-            this.splitContainer6.Panel1.Controls.Add(this._bProcFlag);
+            this._cbProcFlag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._cbProcFlag.Appearance = System.Windows.Forms.Appearance.Button;
+            this._cbProcFlag.AutoSize = true;
+            this._cbProcFlag.Location = new System.Drawing.Point(778, 14);
+            this._cbProcFlag.Name = "_cbProcFlag";
+            this._cbProcFlag.Size = new System.Drawing.Size(59, 23);
+            this._cbProcFlag.TabIndex = 2;
+            this._cbProcFlag.Text = "ProcFlag";
+            this._cbProcFlag.UseVisualStyleBackColor = true;
+            this._cbProcFlag.CheckedChanged += new System.EventHandler(this._cbProcFlag_CheckedChanged);
             // 
-            // splitContainer6.Panel2
+            // checkBox18
             // 
-            this.splitContainer6.Panel2.Controls.Add(this._clbProcFlaf);
-            this.splitContainer6.Size = new System.Drawing.Size(848, 94);
-            this.splitContainer6.SplitterDistance = 45;
-            this.splitContainer6.TabIndex = 0;
+            this.checkBox18.AutoSize = true;
+            this.checkBox18.Location = new System.Drawing.Point(694, 29);
+            this.checkBox18.Name = "checkBox18";
+            this.checkBox18.Size = new System.Drawing.Size(80, 17);
+            this.checkBox18.TabIndex = 1;
+            this.checkBox18.Text = "checkBox2";
+            this.checkBox18.UseVisualStyleBackColor = true;
             // 
-            // _bProcFlag
+            // checkBox17
             // 
-            this._bProcFlag.Location = new System.Drawing.Point(816, 3);
-            this._bProcFlag.Name = "_bProcFlag";
-            this._bProcFlag.Size = new System.Drawing.Size(29, 23);
-            this._bProcFlag.TabIndex = 0;
-            this._bProcFlag.Text = "button2";
-            this._bProcFlag.UseVisualStyleBackColor = true;
-            this._bProcFlag.Click += new System.EventHandler(this._bProcFlag_Click);
+            this.checkBox17.AutoSize = true;
+            this.checkBox17.Location = new System.Drawing.Point(694, 14);
+            this.checkBox17.Name = "checkBox17";
+            this.checkBox17.Size = new System.Drawing.Size(80, 17);
+            this.checkBox17.TabIndex = 0;
+            this.checkBox17.Text = "checkBox1";
+            this.checkBox17.UseVisualStyleBackColor = true;
             // 
-            // _clbProcFlaf
+            // checkBox16
             // 
-            this._clbProcFlaf.ColumnWidth = 250;
-            this._clbProcFlaf.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._clbProcFlaf.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this._clbProcFlaf.FormattingEnabled = true;
-            this._clbProcFlaf.Location = new System.Drawing.Point(0, 0);
-            this._clbProcFlaf.MultiColumn = true;
-            this._clbProcFlaf.Name = "_clbProcFlaf";
-            this._clbProcFlaf.Size = new System.Drawing.Size(848, 34);
-            this._clbProcFlaf.TabIndex = 0;
+            this.checkBox16.AutoSize = true;
+            this.checkBox16.Location = new System.Drawing.Point(608, 29);
+            this.checkBox16.Name = "checkBox16";
+            this.checkBox16.Size = new System.Drawing.Size(80, 17);
+            this.checkBox16.TabIndex = 1;
+            this.checkBox16.Text = "checkBox2";
+            this.checkBox16.UseVisualStyleBackColor = true;
+            // 
+            // checkBox15
+            // 
+            this.checkBox15.AutoSize = true;
+            this.checkBox15.Location = new System.Drawing.Point(608, 14);
+            this.checkBox15.Name = "checkBox15";
+            this.checkBox15.Size = new System.Drawing.Size(80, 17);
+            this.checkBox15.TabIndex = 0;
+            this.checkBox15.Text = "checkBox1";
+            this.checkBox15.UseVisualStyleBackColor = true;
+            // 
+            // checkBox14
+            // 
+            this.checkBox14.AutoSize = true;
+            this.checkBox14.Location = new System.Drawing.Point(522, 29);
+            this.checkBox14.Name = "checkBox14";
+            this.checkBox14.Size = new System.Drawing.Size(80, 17);
+            this.checkBox14.TabIndex = 1;
+            this.checkBox14.Text = "checkBox2";
+            this.checkBox14.UseVisualStyleBackColor = true;
+            // 
+            // checkBox13
+            // 
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.Location = new System.Drawing.Point(522, 14);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Size = new System.Drawing.Size(80, 17);
+            this.checkBox13.TabIndex = 0;
+            this.checkBox13.Text = "checkBox1";
+            this.checkBox13.UseVisualStyleBackColor = true;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Location = new System.Drawing.Point(436, 29);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(80, 17);
+            this.checkBox12.TabIndex = 1;
+            this.checkBox12.Text = "checkBox2";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Location = new System.Drawing.Point(436, 14);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(80, 17);
+            this.checkBox11.TabIndex = 0;
+            this.checkBox11.Text = "checkBox1";
+            this.checkBox11.UseVisualStyleBackColor = true;
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Location = new System.Drawing.Point(350, 29);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(80, 17);
+            this.checkBox10.TabIndex = 1;
+            this.checkBox10.Text = "checkBox2";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            // 
+            // checkBox9
+            // 
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.Location = new System.Drawing.Point(350, 14);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Size = new System.Drawing.Size(80, 17);
+            this.checkBox9.TabIndex = 0;
+            this.checkBox9.Text = "checkBox1";
+            this.checkBox9.UseVisualStyleBackColor = true;
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Location = new System.Drawing.Point(264, 29);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(80, 17);
+            this.checkBox8.TabIndex = 1;
+            this.checkBox8.Text = "checkBox2";
+            this.checkBox8.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Location = new System.Drawing.Point(264, 14);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(80, 17);
+            this.checkBox7.TabIndex = 0;
+            this.checkBox7.Text = "checkBox1";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(178, 29);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(80, 17);
+            this.checkBox6.TabIndex = 1;
+            this.checkBox6.Text = "checkBox2";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(178, 14);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(80, 17);
+            this.checkBox5.TabIndex = 0;
+            this.checkBox5.Text = "checkBox1";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(92, 29);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(80, 17);
+            this.checkBox4.TabIndex = 1;
+            this.checkBox4.Text = "checkBox2";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(92, 14);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(80, 17);
+            this.checkBox3.TabIndex = 0;
+            this.checkBox3.Text = "checkBox1";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(6, 29);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(73, 17);
+            this.checkBox2.TabIndex = 1;
+            this.checkBox2.Text = "Critical Hit";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(6, 14);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(75, 17);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "Normal Hit";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // splitContainer4
             // 
@@ -401,7 +627,7 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.splitContainer5);
-            this.splitContainer4.Size = new System.Drawing.Size(848, 240);
+            this.splitContainer4.Size = new System.Drawing.Size(848, 174);
             this.splitContainer4.SplitterDistance = 194;
             this.splitContainer4.TabIndex = 0;
             // 
@@ -425,10 +651,9 @@
             this._tvFamilyMask.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._tvFamilyMask.CheckBoxes = true;
             this._tvFamilyMask.Location = new System.Drawing.Point(1, 25);
             this._tvFamilyMask.Name = "_tvFamilyMask";
-            this._tvFamilyMask.Size = new System.Drawing.Size(192, 215);
+            this._tvFamilyMask.Size = new System.Drawing.Size(192, 149);
             this._tvFamilyMask.TabIndex = 0;
             // 
             // splitContainer5
@@ -451,7 +676,7 @@
             this.splitContainer5.Panel2.Controls.Add(this.comboBox2);
             this.splitContainer5.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer5.Panel2.Controls.Add(this._lvFiltredSpell);
-            this.splitContainer5.Size = new System.Drawing.Size(650, 240);
+            this.splitContainer5.Size = new System.Drawing.Size(650, 174);
             this.splitContainer5.SplitterDistance = 420;
             this.splitContainer5.TabIndex = 0;
             // 
@@ -461,7 +686,7 @@
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(420, 240);
+            this.richTextBox1.Size = new System.Drawing.Size(420, 174);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -472,7 +697,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(46, 20);
             this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
+            this.button1.Text = "Seach";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // textBox2
@@ -521,7 +746,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._lvFiltredSpell.Location = new System.Drawing.Point(3, 91);
             this._lvFiltredSpell.Name = "_lvFiltredSpell";
-            this._lvFiltredSpell.Size = new System.Drawing.Size(220, 149);
+            this._lvFiltredSpell.Size = new System.Drawing.Size(220, 83);
             this._lvFiltredSpell.TabIndex = 0;
             this._lvFiltredSpell.UseCompatibleStateImageBehavior = false;
             // 
@@ -635,10 +860,8 @@
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
             this.splitContainer3.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.splitContainer6.Panel1.ResumeLayout(false);
-            this.splitContainer6.Panel2.ResumeLayout(false);
-            this.splitContainer6.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel2.ResumeLayout(false);
             this.splitContainer4.ResumeLayout(false);
@@ -694,12 +917,29 @@
         private System.Windows.Forms.ColumnHeader _chID;
         private System.Windows.Forms.ColumnHeader _chName;
         private System.Windows.Forms.ToolStripStatusLabel _status;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckedListBox _clbProcFlaf;
-        private System.Windows.Forms.SplitContainer splitContainer6;
-        private System.Windows.Forms.Button _bProcFlag;
         private Microsoft.VisualBasic.PowerPacks.DataRepeaterItem ItemTemplate;
         private System.Windows.Forms.ComboBox _cbTarget2;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox18;
+        private System.Windows.Forms.CheckBox checkBox17;
+        private System.Windows.Forms.CheckBox checkBox16;
+        private System.Windows.Forms.CheckBox checkBox15;
+        private System.Windows.Forms.CheckBox checkBox14;
+        private System.Windows.Forms.CheckBox checkBox13;
+        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.CheckBox checkBox11;
+        private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.CheckBox checkBox9;
+        private System.Windows.Forms.CheckBox checkBox8;
+        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox _cbProcFlag;
+        private System.Windows.Forms.CheckedListBox _clbProcFlags;
     }
 }
 

@@ -90,6 +90,7 @@
     <Compile Include="Spell.cs" />
     <Compile Include="SpellFieldsEnums.cs" />
     <Compile Include="SpellInfo.cs" />
+    <Compile Include="SpellPorcFlag.cs" />
     <Compile Include="SpellStruct.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

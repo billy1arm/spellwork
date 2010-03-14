@@ -523,7 +523,7 @@
         SPELL_AURA_MOD_TARGET_ARMOR_PCT                     = 280,
         SPELL_AURA_MOD_HONOR_GAIN                           = 281,
         SPELL_AURA_MOD_BASE_HEALTH_PCT                      = 282,
-        SPELL_AURA_MOD_HEALING_RECEIVED                     = 283,             // Possibly only for some spell family class spells
+        SPELL_AURA_MOD_HEALING_RECEIVED                     = 283,              // Possibly only for some spell family class spells
         SPELL_AURA_284                                      = 284,
         SPELL_AURA_MOD_ATTACK_POWER_OF_ARMOR                = 285,
         SPELL_AURA_ABILITY_PERIODIC_CRIT                    = 286,
