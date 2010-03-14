@@ -14,6 +14,7 @@ namespace SpellWork
         public frmMain()
         {
             InitializeComponent();
+            Loads();
         }
 
         private DataTable spellData { get; set; }
@@ -24,27 +25,32 @@ namespace SpellWork
 
         private DataTable tempTable { get; set; }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Loads()
         {
             // read dbc to DataTable
-            Spell spell     = new Spell();
-            // is as
-            spellData       = Spell.SpellData;
-            spellDuration   = Spell.SpellDuration;
-            spellRadius     = Spell.SpellRadius;
-            spellCastTime   = Spell.SpellCastTime;
-            spellRange      = Spell.SpellRange;
-
-            foreach (var elem in Enum.GetValues(typeof(ProcFlags)))
-            {
+           Spell spell     = new Spell();
+           // is as
+           spellData       = Spell.SpellData;
+           spellDuration   = Spell.SpellDuration;
+           spellRadius     = Spell.SpellRadius;
+           spellCastTime   = Spell.SpellCastTime;
+           spellRange      = Spell.SpellRange;
+           //*/
+           // foreach (var elem in Enum.GetValues(typeof(ProcFlags)))
+           // {
                 // tested
-                _clbProcFlaf.Items.Add(elem.ToString().Substring(10));
-            }
+           // _clbProcFlags.Items.AddRange(new Object[] { Enum.GetValues(typeof(ProcFlags)) });
+           //}
             SetEnumValues(_cbSpellFamilyNames, typeof(SpellFamilyNames));
-            SetEnumValues(_cbSpellAura,        typeof(AuraType));
-            SetEnumValues(_cbSpellEffect,      typeof(SpellEffects));
-            SetEnumValues(_cbTarget1,          typeof(Targets));
-            SetEnumValues(_cbTarget2,          typeof(Targets));
+            SetEnumValues(_cbSpellAura, typeof(AuraType));
+            SetEnumValues(_cbSpellEffect, typeof(SpellEffects));
+            SetEnumValues(_cbTarget1, typeof(Targets));
+            SetEnumValues(_cbTarget2, typeof(Targets));
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            splitContainer3.SplitterDistance = 52;
         }
 
         private void SetEnumValues(ComboBox cb, Type enums)
@@ -65,14 +71,19 @@ namespace SpellWork
             cb.ValueMember   = "ID";
         }
 
+        private bool ContainText(String text, String str)
+        {
+            return (text.ToUpper().IndexOf(str.ToUpper(), StringComparison.CurrentCultureIgnoreCase) != -1);
+        }
+
         private void _bSearch_Click(object sender, EventArgs e)
         {
             _lvSpellList.Items.Clear();
 
             var query =
                 from spell in spellData.AsEnumerable()
-                where (spell.Field<string>("ID") == _tbSearch.Text)
-                  || (spell.Field<string>("SpellName_" + Spell.Locales).StartsWith(_tbSearch.Text, StringComparison.CurrentCultureIgnoreCase))
+                where (spell.Field<String>("ID") == _tbSearch.Text)
+                  || ContainText(spell.Field<String>("SpellName_" + Spell.Locales), _tbSearch.Text)
                 select spell;
 
             if (query.Count() == 0) return;
@@ -102,19 +113,19 @@ namespace SpellWork
         {
             _lvSpellList.Items.Clear();
 
-            var bFamilyNames = _cbSpellFamilyNames.SelectedIndex == 0 ? false : true;
+            var bFamilyNames = _cbSpellFamilyNames.SelectedIndex != 0;
             var fFamilyNames = _cbSpellFamilyNames.SelectedValue.ToString();
 
-            var bSpellAura   = _cbSpellAura.SelectedIndex == 0 ? false : true;
+            var bSpellAura   = _cbSpellAura.SelectedIndex != 0;
             var fSpellAura   = _cbSpellAura.SelectedValue.ToString();
 
-            var bSpellEffect = _cbSpellEffect.SelectedIndex == 0 ? false : true;
+            var bSpellEffect = _cbSpellEffect.SelectedIndex != 0;
             var fSpellEffect = _cbSpellEffect.SelectedValue.ToString();
 
-            var bTarget1     = _cbTarget1.SelectedIndex == 0 ? false : true;
+            var bTarget1     = _cbTarget1.SelectedIndex != 0;
             var fTarget1     = _cbTarget1.SelectedValue.ToString();
 
-            var bTarget2     = _cbTarget2.SelectedIndex == 0 ? false : true;
+            var bTarget2     = _cbTarget2.SelectedIndex != 0;
             var fTarget2     = _cbTarget2.SelectedValue.ToString();
 
             var query =
@@ -170,7 +181,8 @@ namespace SpellWork
 
         private void _bProc_Click(object sender, EventArgs e)
         {
-            splitContainer3.Panel1Collapsed = !splitContainer3.Panel1Collapsed;
+            splitContainer3.SplitterDistance = 70; 
+            //splitContainer3.Panel1Collapsed = !splitContainer3.Panel1Collapsed;
         }
 
         private void _bSpellInfo_Click(object sender, EventArgs e)
@@ -180,40 +192,47 @@ namespace SpellWork
 
         private void tabControl1_TabIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 1)
-            {
-                _bProc.Visible = true;
-                _bSpellInfo.Visible = true;
-            }
-            else
-            {
-                _bProc.Visible = false;
-                _bSpellInfo.Visible = false;
-            }
-        }
-
-        private void _bProcFlag_Click(object sender, EventArgs e)
-        {
-            splitContainer6.Panel2Collapsed = !splitContainer6.Panel2Collapsed;
+            _bProc.Visible = _bSpellInfo.Visible = tabControl1.SelectedIndex == 1;
         }
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UInt64[] mask = new UInt64[] { 0x00, 0x00, 0x00 };
+            SpellPorcFlag.BuildFamilyTree(_tvFamilyMask, 0, "");
+            return;
+            _tvFamilyMask.Nodes.Clear();
 
-            for (int j = 0; j < 3; j++)
+            for (int i = 0; i < 96; i++)
             {
-                for (int i = 0; i < 32; i++)
-                {
-                    TreeNode tree = new TreeNode();
-                    tree.Text = String.Format("0x{0:X8} {1:X8} {2:X8}", mask[2], mask[1], mask[0]);
-                    tree.Nodes.Add(new TreeNode("testedt"));
+                uint mask_0 = 0, mask_1 = 0, mask_2 = 0;
 
-                    _tvFamilyMask.Nodes.Add(tree);
-                    mask[j] *= 2;
+                if (i < 32)
+                    mask_0 = 1U << i;
+                else if (i < 64)
+                    mask_1 = 1U << (i - 32);
+                else
+                    mask_2 = 1U << (i - 64);
+                
+                TreeNode node = new TreeNode();
+                node.Text = String.Format("0x{0:X8} {1:X8} {2:X8}", mask_2, mask_1, mask_0);
+                // test
+                if (i < 64)
+                {
+                    node.Nodes.Add("2222222222222");
+                    node.Nodes.Add("3333333333333");
                 }
+
+                _tvFamilyMask.Nodes.Add(node);
             }
         }
 
+        private void _cbProcFlag_CheckedChanged(object sender, EventArgs e)
+        {
+            splitContainer3.SplitterDistance = ((CheckBox)sender).Checked ? 160 : 52;
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
